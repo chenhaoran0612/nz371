@@ -1,0 +1,1 @@
+"use strict";$(function(){$(".login-form").submit(function(){return $.ajax({url:"/front-login",type:"post",data:$(".login-form").serialize(),success:function(o){o.result?window.location.href="/home":$(".login-tip").html(o.message).removeClass("hide").addClass("show")}}),!1}),$(".login-form input").focus(function(){$(".login-tip").removeClass("show").addClass("hide")})});
