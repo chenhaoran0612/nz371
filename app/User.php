@@ -108,71 +108,9 @@ class User extends Authenticatable
         }
     }
 
-    public function getLevelMapAttribute()
-    {
-        return [
-            '1' => '一级',
-            '2' => '二级',
-            '3' => '三级',
-            '4' => '四级',
-            '5' => '五级',
-            // '6' => '六级',
-            // '7' => '七级',
-            // '8' => '八级',
-            // '9' => '九级',
-            // '10' => '十级',
-        ];
-    }
-
-
-    public function getCreditMapAttribute()
-    {
-        return [
-            '1' => '一级',
-            '2' => '二级',
-            '3' => '三级',
-            '4' => '四级',
-            '5' => '五级',
-            // '6' => '六级',
-            // '7' => '七级',
-            // '8' => '八级',
-            // '9' => '九级',
-            // '10' => '十级',
-        ];
-    }
-
-    public function qualificationMap()
-    {
-        return [
-            '1' => '一般纳税人(有出口资质)',
-            '2' => '一般纳税人(无出口资质)',
-            '3' => '非一般纳税人(无出口资质)',
-
-        ];
-    }
-
-    public function scopeDistributor($query)
-    {
-        return $query->where('role','distributor');
-    }
-    
-    public function scopeVendor($query)
-    {
-        return $query->where('role' , 'vendor');
-    }
-
     public function scopeSubaccount($query)
     {
         return $query->where('role','subaccount');
-    }
-
-
-    public function spiderPermissson()
-    {
-        $parentUser = self::where('id',$this->getParentId())->first();
-        $parentPermissionArr = explode(',',  $parentUser->permission);
-        $selfPermissionArr = explode(',',  $this->permission);
-        return (in_array('spider_spiderjd',$parentPermissionArr) && in_array('spider_spiderjdsingle', $parentPermissionArr)) ? 1 : 0;
     }
 
     public function getGroupIdAttribute($value)
@@ -199,18 +137,6 @@ class User extends Authenticatable
                     $permission = array_merge($permission, array_keys($account));
                 }
                 return $this->matchPermission($permission);
-            case 'distributor':
-                $distributorPermission = config('modelPermission.normal_permission.distributor');
-                foreach ($distributorPermission as $key => $distributor) {
-                    $permission = array_merge($permission, array_keys($distributor));
-                }
-                return $this->matchPermission($permission);
-            case 'vendor':
-                $vendorPermission = config('modelPermission.normal_permission.vendor');
-                foreach ($vendorPermission as $key => $vendor) {
-                    $permission = array_merge($permission, array_keys($vendor));
-                }
-                return $this->matchPermission($permission);
             case 'subaccount':
                 $groupId = array_filter($this->group_id);
                 if (!empty($groupId)) {
@@ -229,7 +155,6 @@ class User extends Authenticatable
                 return [];
                 break;
         }
-        // return ['user_distributor' ,'user_vendor' ,'user_subaccount' ,'order_group', 'user_subaccountcreate','user_subaccountedit'];
     }
 
     public function matchPermission($permission)
@@ -243,11 +168,6 @@ class User extends Authenticatable
         return array_merge($permission, $public_permission);
     }
 
-    public function getPaymentMethod()
-    {
-        return $this->belongsTo('App\PaymentMethod','payment_method_id','id')->withTrashed();
-    }
-
     public function getUserType()
     {
         $map = [
@@ -257,42 +177,6 @@ class User extends Authenticatable
             'register' => '主账户',
         ];
         return isset($map[$this->role])? $map[$this->role] : '';
-    }
-
-    public function isVnedorOrDistributor()
-    {
-        return ($this->role == 'vendor' || $this->role == 'distributor')? true : false;
-    }
-
-    public function isVendor()
-    {
-        return $this->role == 'vendor' ? true : false;
-    }
-
-    public function isDistributor()
-    {
-        return $this->role == 'distributor' ? true : false;
-    }
-
-    public function getSystemId()
-    {
-        switch ($this->role) {
-            case 'vendor':
-            case 'distributor':
-                return $this->id;
-                break;
-            case 'subaccount':
-                return $this->getParentId();
-                break;
-            default:
-                return $this->getParentId();
-                break;
-        }
-    }
-
-    public function isAdmin()
-    {
-        return ($this->role == 'register' || $this->role == 'subaccount') ? true : false;
     }
 
 }

@@ -80,33 +80,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="clearfix"></div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3">等级</label>
-                                                <div class="col-md-9">
-                                                    <select class="form-control" name="level">
-                                                    @foreach (Auth::user()->levelMap as $key  => $level)
-                                                        <option value="{{$key}}">{{$level}}</option>
-                                                    @endforeach
-
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3">信用等级</label>
-                                                <div class="col-md-9">
-                                                    <select class="form-control" name="credit">
-                                                        @foreach (Auth::user()->creditMap as $key  => $level)
-                                                        <option value="{{$key}}">{{$level}}</option>
-                                                    @endforeach
-
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        
+                                     
                                     
                                     <div class="clearfix"></div>
                                     <div class="col-md-6">
@@ -200,8 +175,7 @@
             var password = $('#user_form [name=password]').val();
             var comfirm_password = $('#user_form [name=comfirm_password]').val();
             var status = document.querySelector('#user_form [name=status]').checked;
-            var level = $('#user_form [name=level]').val();
-            var credit = $('#user_form [name=credit]').val();
+            
             var contacts = $('#user_form [name=contacts]').val();
             var phone = $('#user_form [name=phone]').val();
             var address = $('#user_form [name=address]').val();
@@ -219,8 +193,6 @@
                     password :password,
                     comfirm_password : comfirm_password,
                     status : status,
-                    level : level,
-                    credit : credit,
                     contacts : contacts,
                     phone : phone,
                     memo : memo,

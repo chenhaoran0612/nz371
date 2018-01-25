@@ -11,7 +11,7 @@
                 <ul class="nav navbar-top-links navbar-right pull-right active">
                     <li class="in">
                         <form role="search" class="app-search hidden-sm hidden-xs m-r-10">
-                            <input type="text" placeholder="Search..." class="form-control"> <a href="" class="active"><i class="fa fa-search"></i></a> </form>
+                            <input type="text" placeholder="搜索" class="form-control"> <a href="" class="active"><i class="fa fa-search"></i></a> </form>
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#">
@@ -27,10 +27,6 @@
                                     </div>
                                     <div class="u-text p-l-0">
                                         <h4>{{Auth::user()->name}}</h4>
-                                        <p class="text-muted">{{Auth::user()->getUserType()}}</p>
-                                        @if (Auth::user()->isVnedorOrDistributor())
-                                            <a href="/account/transaction/onlinepay" class="btn btn-rounded btn-danger btn-sm">充值</a>
-                                        @endif
                                         
                                     </div>
                                 </div>

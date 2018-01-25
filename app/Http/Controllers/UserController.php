@@ -9,13 +9,9 @@ use Validator;
 use DB;
 use App\User;
 use App\UserGroup;
-use App\TransactionLog;
-use App\PaymentMethod;
 use App\Services\Excel\DownloadService;
 use App\Services\Excel\UploadService;
 use ElfSundae\Laravel\Hashid\Facades\Hashid;
-use App\UserAccount;
-use App\OperationLog;
 
 
 class UserController extends Controller
@@ -38,129 +34,9 @@ class UserController extends Controller
     const VERIFY_MESSAGE_FAIL = '获取验证码失败';
     const CHAR_LONG = '字符串过长';
 
-    //经销商
-    function distributor(Request $request)
-    {
-        
-        $user =Auth::user();
-        $searchs = $request->only('user_code', 'name', 'level', 'credit', 'status');
-        $conditions = [
-            'user_code' => '=',
-            'name' => 'like',
-            'level' => '=',
-            'credit' => '=',
-            'status' => '=',
-        ];
-        $data['users'] = User::user($user)->search($searchs, $conditions)->distributor()->orderBy('id')->paginate(20);
-        $data['users']->appends(array_filter($request->all()));
-        return view('user.distributor', $data);
-    }
 
-    //经销商
-    function distributorCreate(Request $request)
-    {
-        $user =Auth::user();
-        return view('user.distributor_create');
-    }
 
-    //经销商创建
-    function distributorCreateSave(Request $request)
-    {
-        $user = Auth::user();
-        $userId = $user->getParentId();
 
-        if ($user->isVnedorOrDistributor()) {
-            return ['result' => false, 'message' => self::AUTH_LOWER];
-        }
-
-        $data = $request->all();
-        $message = $this->userValidator($data);
-        if (is_array($message)) {
-            return ['result' => false, 'message'=>$message];
-        }
-        $data['status'] = $data['status']=='true'? 1: 0;
-        $data['role'] = 'distributor';
-        $data['parent_id'] = $userId;
-        $data['logo'] = explode(',',$data['logo'])[0];
-        $data['password'] = bcrypt($data['password']);
-        $distributor = User::create($data);
-        $distributor->setUserCode();
-
-        UserAccount::createAccountByUser($distributor);
-
-        $request->request->remove('password');
-        $request->request->remove('comfirm_password');
-        OperationLog::createFromRequest($request);
-        return ['result' => true, 'message' => self::OPERATE_SUCCESS];
-    }
-
-    public function userValidator($data){
-        $validate = 
-        [
-            'name' => 'required|max:255',
-            'password' => 'sometimes|same:comfirm_password|between:6,20',
-            'email' => 'sometimes|required|email|max:255|unique:users,email,'.(isset($data['id']) ? $data['id'] : 'null').',id',
-            'qualification' => 'sometimes|required|max:11',
-            'payment_method_id' => 'sometimes|required|max:11',
-
-        ];
-        $message = 
-        [
-            'required' => self::REQUIRED,
-            'same' => self::PASSWORD_SAME,
-            'between' => self::PASSWORD_BETWEEN,
-            'email' => self::EMAIL_ERROR,
-            'unique' => self::EMAIL_EXIST,
-            'max' => self::CHAR_LONG,
-        ];
-        $validator = Validator::make($data, $validate, $message);
-        if ($validator->fails()) {
-            return $validator->errors()->toArray();
-        }
-        return true;
-    }
-
-    public function distributorEdit(Request $request)
-    {
-        $user = Auth::user();
-        $id = Hashid::decode($request->id);
-
-        if (!$id || !$userEdit = User::user($user)->whereId($id)->first()) {
-            return back();
-        }
-        $data['user'] = $userEdit;
-        return view('user.distributor_edit', $data);
-    }
-
-    //经销商编辑保存
-    public function distributorEditSave(Request $request)
-    {
-        $data = $request->all();
-        $data['id'] = Hashid::decode($data['id']);
-        $data = array_filter($data);
-        $message = $this->userValidator($data);
-        if (is_array($message)) {
-            return ['result' => false, 'message'=>$message];
-        }
-
-        //验证用户权限
-        $user = Auth::user();
-        $data['status'] = $data['status']=='true'? 1: 0;
-        if (isset($data['password'])) {
-            $data['password'] = bcrypt($data['password']);
-            unset($data['comfirm_password']);
-        }
-        $effectNumber = User::whereId($data['id'])->user($user)->update($data);
-
-        $request->request->remove('password');
-        $request->request->remove('comfirm_password');
-        OperationLog::createFromRequest($request);
-        if ($effectNumber) {
-            return ['result' => true, 'message' => self::OPERATE_SUCCESS];
-        } else {
-            return ['result' => false, 'message' => self::OPERATE_FAIL];
-        }
-    }
 
     //Logo上传
     public function uploadUserLogo(Request $request)
@@ -203,141 +79,9 @@ class UserController extends Controller
         return ['files' => $result];
     }
 
-    /**
-     * [vendor description] 供应商管理入口
-     * @param  Request $request [description]
-     * @return [type]           [description]
-     */
-    function vendor(Request $request)
-    {
-        $user =Auth::user();
-        $searchs = $request->only('user_code', 'name', 'level', 'credit', 'status');
-        $conditions = [
-            'user_code' => '=',
-            'name' => 'like',
-            'level' => '=',
-            'credit' => '=',
-            'status' => '=',
-        ];
-        $data['users'] = User::user($user)->search($searchs, $conditions)->vendor()->orderBy('id','desc')->paginate(20);
-        $data['users']->appends(array_filter($request->all()));
-        return view('user.vendor', $data);
-    }
 
 
-    /**
-     * [distributorCreate description]供应商新增
-     * @param  Request $request [description]
-     * @return [type]           [description]
-     */
-    function vendorCreate(Request $request)
-    {
-        $user =Auth::user();
-        $data['paymentmethods'] = PaymentMethod::user($user)->active()->get();
-        $data['qualificationMap'] = $user->qualificationMap();
-        return view('user.vendor_create', $data);
-    }
 
-    /**
-     * [vendorCreateSave description] 供应商新增保存
-     * @param  Request $request [description]
-     * @return [type]           [description]
-     */
-    public function vendorCreateSave(Request $request)
-    {
-        $user = Auth::user();
-        $data = $request->all();
-        $message = $this->userValidator($data);
-        if (is_array($message)) {
-            return ['result' => false, 'message'=>$message];
-        }
-        $data['status'] = $data['status']=='true'? 1: 0;
-        $data['role'] = 'vendor';
-        $data['parent_id'] = $user->getParentId();
-        $data['logo'] = explode(',',$data['logo'])[0];
-        $data['password'] = bcrypt($data['password']);
-        $vendor = User::create($data);
-        $vendor->setUserCode();
-        UserAccount::createAccountByUser($vendor);
-
-        $request->request->remove('password');
-        $request->request->remove('comfirm_password');
-        OperationLog::createFromRequest($request);
-        return ['result' => true, 'message' => self::OPERATE_SUCCESS];
-    }
-
-    /**
-     * [vendorDelete description] 供应商删除操作
-     * @param  Request $request [description]
-     * @return [type]           [description]
-     */
-    // public function vendorDelete(Request $request)
-    // {
-    //     $id = $request->get('id');
-    //     $user = Auth::user();
-    //     if (!$user = User::whereId($id)->user($user)->vendor()->first()) {
-    //         return ['result'=>false ,'message' => self::AUTH_LOWER];
-    //     }
-    //     $user->delete();
-        
-    //     // OperationLog::createFromRequest($request);
-    //     if ($user->trashed()) {
-    //         return response()->json(array('result' => true, 'message' => self::DELETE_SUCCESS));
-    //     } else {
-    //         return response()->json(array('result' => false, 'message' => self::DELETE_FAIL));
-    //     }
-    // }
-
-    /**
-     * [vendorEdit description]供应商编辑
-     * @param  Request $request [description]
-     * @return [type]           [description]
-     */
-    public function vendorEdit(Request $request)
-    {
-        $user = Auth::user();
-        $id = Hashid::decode($request->id);
-        if ( !$id || !$userEdit = User::user($user)->whereId($id)->vendor()->first()  ) {
-            return back();
-        }
-        $data['user'] = $userEdit;
-        $data['loginer'] = $user;
-        $data['paymentmethods'] = PaymentMethod::user($user)->active()->get();
-        $data['qualificationMap'] = $user->qualificationMap();
-        return view('user.vendor_edit', $data);
-    }
-
-    /**
-     * [vendorEditSave description] 供应商编辑保存
-     * @param  Request $request [description]
-     * @return [type]           [description]
-     */
-    public function vendorEditSave(Request $request)
-    {
-        $data = $request->all();
-        $data['id'] = Hashid::decode($data['id']);
-        $data = array_filter($data);
-        $message = $this->userValidator($data);
-        if (is_array($message)) {
-            return ['result' => false, 'message'=>$message];
-        }
-
-        //验证用户权限
-        $user = Auth::user();
-        $data['status'] = $data['status']=='true'? 1: 0;
-        $effectNumber = User::whereId($data['id'])->user($user)->vendor()->update($data);
-
-        if (isset($data['password'])) {
-            $data['password'] = bcrypt($data['password']);
-            unset($data['comfirm_password']);
-        }
-        OperationLog::createFromRequest($request);
-        if ($effectNumber) {
-            return ['result' => true, 'message' => self::OPERATE_SUCCESS];
-        } else {
-            return ['result' => false, 'message' => self::OPERATE_FAIL];
-        }
-    }
 
     /**
      * 子账户管理
@@ -396,7 +140,6 @@ class UserController extends Controller
         $user->setUserCode();
         $request->request->remove('password');
         $request->request->remove('comfirm_password');
-        OperationLog::createFromRequest($request);
         return ['result' => true, 'message' => self::OPERATE_SUCCESS];
     }
 
@@ -415,6 +158,32 @@ class UserController extends Controller
         $data['user'] = $userEdit;
         $data['userGroups'] = UserGroup::user($user)->get();
         return view('user.subaccount_edit', $data);
+    }
+
+    public function userValidator($data){
+        $validate = 
+        [
+            'name' => 'required|max:255',
+            'password' => 'sometimes|same:comfirm_password|between:6,20',
+            'email' => 'sometimes|required|email|max:255|unique:users,email,'.(isset($data['id']) ? $data['id'] : 'null').',id',
+            'qualification' => 'sometimes|required|max:11',
+            'payment_method_id' => 'sometimes|required|max:11',
+
+        ];
+        $message = 
+        [
+            'required' => self::REQUIRED,
+            'same' => self::PASSWORD_SAME,
+            'between' => self::PASSWORD_BETWEEN,
+            'email' => self::EMAIL_ERROR,
+            'unique' => self::EMAIL_EXIST,
+            'max' => self::CHAR_LONG,
+        ];
+        $validator = Validator::make($data, $validate, $message);
+        if ($validator->fails()) {
+            return $validator->errors()->toArray();
+        }
+        return true;
     }
 
     /**
@@ -449,7 +218,6 @@ class UserController extends Controller
         $effectNumber = User::whereId($data['id'])->user($user)->update($data);
         $request->request->remove('password');
         $request->request->remove('comfirm_password');
-        OperationLog::createFromRequest($request);
         if ($effectNumber) {
             return ['result' => true, 'message' => self::OPERATE_SUCCESS];
         } else {
@@ -469,8 +237,6 @@ class UserController extends Controller
             return ['result'=>false ,'message' => self::AUTH_LOWER];
         }
         $user->delete();
-        
-        OperationLog::createFromRequest($request);
         if ($user->trashed()) {
             return response()->json(array('result' => true, 'message' => self::DELETE_SUCCESS));
         } else {
@@ -504,7 +270,6 @@ class UserController extends Controller
             return ['result' => false, 'message'=>$message];
         }
         UserGroup::create($data);
-        OperationLog::createFromRequest($request);
         return ['result' => true, 'message' => self::OPERATE_SUCCESS];
     }
 
@@ -541,7 +306,6 @@ class UserController extends Controller
         }
         $userGroup->permission = $data['permission'];
         $userGroup->save();
-        OperationLog::createFromRequest($request);
         return ['result' => true, 'message' => self::OPERATE_SUCCESS];
     }
 
@@ -562,36 +326,10 @@ class UserController extends Controller
         }
         $userGroup->name = $data['name'];
         $userGroup->save();
-        OperationLog::createFromRequest($request);
         return ['result' => true, 'message' => self::OPERATE_SUCCESS];
     }
 
-    /**
-     * [distributorDownload description]经销商下载
-     * @param  Request $request [description]
-     * @return [type]           [description]
-     */
-    public function distributorDownload(Request $request)
-    {
-        $user = Auth::user();
-        $searchs = $request->only('user_code', 'name', 'level', 'credit', 'status');
-        $conditions = [
-            'user_code' => '=',
-            'name' => 'like',
-            'level' => '=',
-            'credit' => '=',
-            'status' => '=',
-        ];
-        $data = User::user($user)->search($searchs, $conditions)->distributor()->orderBy('id')->get();
-        $downloadService = new DownloadService('111' ,['a','b' ,'c'] , [ 0 => [ 1 , 2 , 3 ] , 1=> [2,3,4]  , 2 => [3,'' , '5']]);
-        $data = $downloadService->download();
-        //下载成功
-        if($data['result']){
-            return response()->download($data['url']);
-        }
-        return $data;
-        
-    }
+
 
     public function userGroupDelete(Request $request)
     {
@@ -601,7 +339,6 @@ class UserController extends Controller
             return ['result'=>false ,'message' => self::AUTH_LOWER];
         }
         $userGroup->delete();
-        OperationLog::createFromRequest($request);
         if ($userGroup->trashed()) {
             return response()->json(array('result' => true, 'message' => self::DELETE_SUCCESS));
         } else {

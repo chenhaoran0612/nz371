@@ -32,30 +32,6 @@
                                         <label >用户名</label>
                                         <input type="text" class="form-control" id="name" name='name'>
                                     </div>
-
-                                    <div class="form-group col-sm-3">
-                                        <label>级别</label>
-                                        <div class="col-md-12-select">
-                                            <select class="selectpicker bs-select-hidden" data-style="btn-info btn-outline" id="level" name="level">
-                                                <option value="">请选择级别</option>
-                                                @foreach (Auth::user()->levelMap as $key  => $level)
-                                                    <option value="{{$key}}">{{$level}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-sm-3">
-                                        <label>信用等级</label>
-                                        <div class="col-md-12-select">
-                                            <select class="selectpicker bs-select-hidden" data-style="btn-info btn-outline" id="credit" name="credit">
-                                                <option value="">请选择信用等级</option>
-                                                @foreach (Auth::user()->creditMap as $key  => $level)
-                                                    <option value="{{$key}}">{{$level}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="clearfix"></div>
                                     <div class="form-group col-sm-3">
                                         <label for="selectpicker">状态</label>
                                         <div class="col-md-12-select">
@@ -86,8 +62,6 @@
                                 <th class="text-center">编码</th>
                                 <th>用户名 </th>
                                 <th>EMAIL</th>
-                                <th>级别</th>
-                                <th>信用等级</th>
                                 <th>状态</th>
                                 <th>操作</th>
                             </tr>
@@ -97,10 +71,7 @@
                             <tr>
                                 <td class="text-center">{{$user->user_code}}</td>
                                 <td>{{$user->name}}</td>
-                                <td>{{$user->email}}</td>
-                                <td>{{$user->levelMap[$user->level]}}</td>
-                                <td>{{$user->creditMap[$user->credit]}}</td>
-                                <td>{{$user->status? "开启" : "关闭"}}</td>
+                                <td>{{$user->email}}</td>                                <td>{{$user->status? "开启" : "关闭"}}</td>
                                 <td>
                                     <a type="button" href="/user/subaccount/edit?id={{Hashid::encode($user->id)}}" class="btn btn-info btn-outline btn-circle btn-sm m-r-5"><i class="ti-pencil-alt"></i></a>
                                     <button type="button" class="btn btn-info btn-outline btn-circle btn-sm m-r-5 delete" data-id="{{Hashid::encode($user->id)}}"><i class="ti-trash"></i></button>
