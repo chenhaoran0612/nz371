@@ -1,23 +1,54 @@
 {
-  "name": "blueimp-tmpl",
-  "version": "3.11.0",
-  "title": "JavaScript Templates",
-  "description": "1KB lightweight, fast & powerful JavaScript templating engine with zero dependencies. Compatible with server-side environments like Node.js, module loaders like RequireJS, Browserify or webpack and all web browsers.",
-  "keywords": [
-    "javascript",
-    "templates",
-    "templating"
+  "_args": [
+    [
+      "blueimp-tmpl@^3.11.0",
+      "/Users/chenhaoran/code/bigshop/nz371"
+    ]
   ],
-  "homepage": "https://github.com/blueimp/JavaScript-Templates",
+  "_from": "blueimp-tmpl@>=3.11.0 <4.0.0",
+  "_id": "blueimp-tmpl@3.11.0",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/blueimp-tmpl",
+  "_nodeVersion": "8.4.0",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/blueimp-tmpl-3.11.0.tgz_1503874268597_0.24556672340258956"
+  },
+  "_npmUser": {
+    "email": "mail@blueimp.net",
+    "name": "blueimp"
+  },
+  "_npmVersion": "5.4.0",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "blueimp-tmpl",
+    "raw": "blueimp-tmpl@^3.11.0",
+    "rawSpec": "^3.11.0",
+    "scope": null,
+    "spec": ">=3.11.0 <4.0.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/blueimp-tmpl/-/blueimp-tmpl-3.11.0.tgz",
+  "_shasum": "47e78cbab16770e3922b019a250b4ad9c7b20f8f",
+  "_shrinkwrap": null,
+  "_spec": "blueimp-tmpl@^3.11.0",
+  "_where": "/Users/chenhaoran/code/bigshop/nz371",
   "author": {
     "name": "Sebastian Tschan",
     "url": "https://blueimp.net"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/blueimp/JavaScript-Templates.git"
+  "bin": {
+    "tmpl.js": "js/compile.js"
   },
-  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/blueimp/JavaScript-Templates/issues"
+  },
+  "dependencies": {},
+  "description": "1KB lightweight, fast & powerful JavaScript templating engine with zero dependencies. Compatible with server-side environments like Node.js, module loaders like RequireJS, Browserify or webpack and all web browsers.",
   "devDependencies": {
     "chai": "^4.1.1",
     "eslint": "^4.5.0",
@@ -30,49 +61,44 @@
     "prettier-eslint-cli": "^4.2.1",
     "uglify-js": "^3.0.28"
   },
-  "scripts": {
-    "format": "prettier-eslint --no-semi --single-quote --write **/*.js",
-    "lint": "eslint .",
-    "unit": "mocha",
-    "test": "npm run lint && npm run unit",
-    "build": "cd js && uglifyjs tmpl.js -c -m -o tmpl.min.js --source-map url=tmpl.min.js.map",
-    "preversion": "npm test",
-    "version": "npm run build && git add -A js",
-    "postversion": "git push --tags origin master master:gh-pages && npm publish"
-  },
-  "bin": {
-    "tmpl.js": "js/compile.js"
-  },
-  "main": "js/tmpl.js",
-  "gitHead": "da7647cb93fff2030e73a701db22c66de76a9919",
-  "bugs": {
-    "url": "https://github.com/blueimp/JavaScript-Templates/issues"
-  },
-  "_id": "blueimp-tmpl@3.11.0",
-  "_npmVersion": "5.4.0",
-  "_nodeVersion": "8.4.0",
-  "_npmUser": {
-    "name": "blueimp",
-    "email": "mail@blueimp.net"
-  },
+  "directories": {},
   "dist": {
     "integrity": "sha512-+nzph90GQ7YzYdOJNLm1hHJrzWnWbxUGJyJVrLBD+q7HF6PIIjJVNrJCgLkFmNcNvJRKICvWuItL8NpH9Z8J5A==",
     "shasum": "47e78cbab16770e3922b019a250b4ad9c7b20f8f",
     "tarball": "https://registry.npmjs.org/blueimp-tmpl/-/blueimp-tmpl-3.11.0.tgz"
   },
+  "gitHead": "da7647cb93fff2030e73a701db22c66de76a9919",
+  "homepage": "https://github.com/blueimp/JavaScript-Templates",
+  "keywords": [
+    "javascript",
+    "templates",
+    "templating"
+  ],
+  "license": "MIT",
+  "main": "js/tmpl.js",
   "maintainers": [
     {
       "name": "blueimp",
       "email": "sebastian.tschan@gmail.com"
     }
   ],
-  "_npmOperationalInternal": {
-    "host": "s3://npm-registry-packages",
-    "tmp": "tmp/blueimp-tmpl-3.11.0.tgz_1503874268597_0.24556672340258956"
+  "name": "blueimp-tmpl",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/blueimp/JavaScript-Templates.git"
   },
-  "directories": {},
-  "_shasum": "47e78cbab16770e3922b019a250b4ad9c7b20f8f",
-  "_resolved": "https://registry.npmjs.org/blueimp-tmpl/-/blueimp-tmpl-3.11.0.tgz",
-  "_from": "blueimp-tmpl@>=3.11.0 <4.0.0",
-  "readme": "ERROR: No README data found!"
+  "scripts": {
+    "build": "cd js && uglifyjs tmpl.js -c -m -o tmpl.min.js --source-map url=tmpl.min.js.map",
+    "format": "prettier-eslint --no-semi --single-quote --write **/*.js",
+    "lint": "eslint .",
+    "postversion": "git push --tags origin master master:gh-pages && npm publish",
+    "preversion": "npm test",
+    "test": "npm run lint && npm run unit",
+    "unit": "mocha",
+    "version": "npm run build && git add -A js"
+  },
+  "title": "JavaScript Templates",
+  "version": "3.11.0"
 }

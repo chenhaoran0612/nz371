@@ -1,13 +1,52 @@
 {
-  "name": "bootstrap-typeahead",
-  "version": "2.3.2",
-  "description": "Typeahead plugin shipped with Bootstrap 2.3.2",
-  "main": "bootstrap-typeahead.js",
-  "scripts": {
-    "test": "echo \"Hello World!\""
+  "_args": [
+    [
+      "bootstrap-typeahead@^2.3.2",
+      "/Users/chenhaoran/code/bigshop/nz371"
+    ]
+  ],
+  "_from": "bootstrap-typeahead@>=2.3.2 <3.0.0",
+  "_id": "bootstrap-typeahead@2.3.2",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/bootstrap-typeahead",
+  "_nodeVersion": "5.3.0",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/bootstrap-typeahead-2.3.2.tgz_1459968309058_0.3936049547046423"
   },
+  "_npmUser": {
+    "email": "rosson@cloudera.com",
+    "name": "rosson"
+  },
+  "_npmVersion": "3.8.2",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "bootstrap-typeahead",
+    "raw": "bootstrap-typeahead@^2.3.2",
+    "rawSpec": "^2.3.2",
+    "scope": null,
+    "spec": ">=2.3.2 <3.0.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/bootstrap-typeahead/-/bootstrap-typeahead-2.3.2.tgz",
+  "_shasum": "462c3be72438c13d8ab6703ace8044cf37401236",
+  "_shrinkwrap": null,
+  "_spec": "bootstrap-typeahead@^2.3.2",
+  "_where": "/Users/chenhaoran/code/bigshop/nz371",
   "author": {
     "name": "Twitter Inc."
+  },
+  "dependencies": {},
+  "description": "Typeahead plugin shipped with Bootstrap 2.3.2",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "462c3be72438c13d8ab6703ace8044cf37401236",
+    "tarball": "https://registry.npmjs.org/bootstrap-typeahead/-/bootstrap-typeahead-2.3.2.tgz"
   },
   "licenses": [
     {
@@ -15,30 +54,18 @@
       "url": "http://www.apache.org/licenses/LICENSE-2.0"
     }
   ],
-  "_id": "bootstrap-typeahead@2.3.2",
-  "_shasum": "462c3be72438c13d8ab6703ace8044cf37401236",
-  "_from": "bootstrap-typeahead@>=2.3.2 <3.0.0",
-  "_npmVersion": "3.8.2",
-  "_nodeVersion": "5.3.0",
-  "_npmUser": {
-    "name": "rosson",
-    "email": "rosson@cloudera.com"
-  },
-  "dist": {
-    "shasum": "462c3be72438c13d8ab6703ace8044cf37401236",
-    "tarball": "https://registry.npmjs.org/bootstrap-typeahead/-/bootstrap-typeahead-2.3.2.tgz"
-  },
+  "main": "bootstrap-typeahead.js",
   "maintainers": [
     {
       "name": "rosson",
       "email": "rosson@cloudera.com"
     }
   ],
-  "_npmOperationalInternal": {
-    "host": "packages-12-west.internal.npmjs.com",
-    "tmp": "tmp/bootstrap-typeahead-2.3.2.tgz_1459968309058_0.3936049547046423"
+  "name": "bootstrap-typeahead",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "scripts": {
+    "test": "echo \"Hello World!\""
   },
-  "directories": {},
-  "_resolved": "https://registry.npmjs.org/bootstrap-typeahead/-/bootstrap-typeahead-2.3.2.tgz",
-  "readme": "ERROR: No README data found!"
+  "version": "2.3.2"
 }

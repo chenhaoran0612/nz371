@@ -1,35 +1,51 @@
 {
-  "name": "blueimp-load-image",
-  "version": "2.17.1",
-  "title": "JavaScript Load Image",
-  "description": "JavaScript Load Image is a library to load images provided as File or Blob objects or via URL. It returns an optionally scaled and/or cropped HTML img or canvas element. It also provides a method to parse image meta data to extract Exif tags and thumbnail",
-  "keywords": [
-    "javascript",
-    "load",
-    "loading",
-    "image",
-    "file",
-    "blob",
-    "url",
-    "scale",
-    "crop",
-    "img",
-    "canvas",
-    "meta",
-    "exif",
-    "thumbnail",
-    "resizing"
+  "_args": [
+    [
+      "blueimp-load-image@^2.17.0",
+      "/Users/chenhaoran/code/bigshop/nz371"
+    ]
   ],
-  "homepage": "https://github.com/blueimp/JavaScript-Load-Image",
+  "_from": "blueimp-load-image@>=2.17.0 <3.0.0",
+  "_id": "blueimp-load-image@2.18.0",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/blueimp-load-image",
+  "_nodeVersion": "9.4.0",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/blueimp-load-image-2.18.0.tgz_1516708055874_0.5476443895604461"
+  },
+  "_npmUser": {
+    "email": "mail@blueimp.net",
+    "name": "blueimp"
+  },
+  "_npmVersion": "5.6.0",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "blueimp-load-image",
+    "raw": "blueimp-load-image@^2.17.0",
+    "rawSpec": "^2.17.0",
+    "scope": null,
+    "spec": ">=2.17.0 <3.0.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/blueimp-load-image/-/blueimp-load-image-2.18.0.tgz",
+  "_shasum": "03b93687eb382a7136cfbcbd4f0e936b6763fc0e",
+  "_shrinkwrap": null,
+  "_spec": "blueimp-load-image@^2.17.0",
+  "_where": "/Users/chenhaoran/code/bigshop/nz371",
   "author": {
     "name": "Sebastian Tschan",
     "url": "https://blueimp.net"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/blueimp/JavaScript-Load-Image.git"
+  "bugs": {
+    "url": "https://github.com/blueimp/JavaScript-Load-Image/issues"
   },
-  "license": "MIT",
+  "dependencies": {},
+  "description": "JavaScript Load Image is a library to load images provided as File or Blob objects or via URL. It returns an optionally scaled and/or cropped HTML img or canvas element. It also provides a method to parse image meta data to extract Exif tags and thumbnail",
   "devDependencies": {
     "concurrently": "^3.5.0",
     "eslint": "^4.5.0",
@@ -44,48 +60,58 @@
     "prettier-eslint-cli": "^4.2.1",
     "uglify-js": "^3.0.28"
   },
-  "scripts": {
-    "format": "prettier-eslint --no-semi --single-quote --write **/*.js",
-    "lint": "eslint .",
-    "serve": "http-server . -a 127.0.0.1 -p $PORT -s",
-    "mocha": "mocha-chrome http://127.0.0.1:$PORT/test",
-    "unit": "PORT=$(get-port) concurrently -k -s first 'npm run serve' 'npm run mocha'",
-    "test": "npm run lint && npm run unit",
-    "build": "cd js && uglifyjs load-image.js load-image-scale.js load-image-meta.js load-image-fetch.js load-image-exif.js load-image-exif-map.js load-image-orientation.js -c -m -o load-image.all.min.js --source-map url=load-image.all.min.js.map",
-    "preversion": "npm test",
-    "version": "npm run build && git add -A js",
-    "postversion": "git push --tags origin master master:gh-pages && npm publish"
-  },
-  "main": "js/index.js",
-  "gitHead": "8def72724a432c74536471da3cbac11596231ede",
-  "bugs": {
-    "url": "https://github.com/blueimp/JavaScript-Load-Image/issues"
-  },
-  "_id": "blueimp-load-image@2.17.1",
-  "_npmVersion": "5.5.1",
-  "_nodeVersion": "8.6.0",
-  "_npmUser": {
-    "name": "blueimp",
-    "email": "mail@blueimp.net"
-  },
+  "directories": {},
   "dist": {
-    "integrity": "sha512-kE6VA2rSBXbFAc9M9laaMD2oOssSopUwLPsjYlFDj4qLY5T1v9ieDi6rAon6fLKTYzlXbIEnxzyCYS/uD2U3NQ==",
-    "shasum": "1be0f9ed416976f034ecc77a9665baba6835248f",
-    "tarball": "https://registry.npmjs.org/blueimp-load-image/-/blueimp-load-image-2.17.1.tgz"
+    "integrity": "sha512-GUrxVE/7FpzAw/WU6GMiI3v+LpFmlAxp7sF36EQB8rGAg97ND8iTeYZ3FQbhsxS5s2dNarGKZEWhKPNKKSmMuA==",
+    "shasum": "03b93687eb382a7136cfbcbd4f0e936b6763fc0e",
+    "tarball": "https://registry.npmjs.org/blueimp-load-image/-/blueimp-load-image-2.18.0.tgz"
   },
+  "gitHead": "d97d1651e89befcd4659d5543863eb8f205ffe1b",
+  "homepage": "https://github.com/blueimp/JavaScript-Load-Image",
+  "keywords": [
+    "blob",
+    "canvas",
+    "crop",
+    "exif",
+    "file",
+    "image",
+    "img",
+    "javascript",
+    "load",
+    "loading",
+    "meta",
+    "resizing",
+    "scale",
+    "thumbnail",
+    "url"
+  ],
+  "license": "MIT",
+  "main": "js/index.js",
   "maintainers": [
     {
       "name": "blueimp",
       "email": "sebastian.tschan@gmail.com"
     }
   ],
-  "_npmOperationalInternal": {
-    "host": "s3://npm-registry-packages",
-    "tmp": "tmp/blueimp-load-image-2.17.1.tgz_1510406581669_0.3714899877086282"
+  "name": "blueimp-load-image",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/blueimp/JavaScript-Load-Image.git"
   },
-  "directories": {},
-  "_shasum": "1be0f9ed416976f034ecc77a9665baba6835248f",
-  "_resolved": "https://registry.npmjs.org/blueimp-load-image/-/blueimp-load-image-2.17.1.tgz",
-  "_from": "blueimp-load-image@>=2.17.0 <3.0.0",
-  "readme": "ERROR: No README data found!"
+  "scripts": {
+    "build": "cd js && uglifyjs load-image.js load-image-scale.js load-image-meta.js load-image-fetch.js load-image-exif.js load-image-exif-map.js load-image-orientation.js -c -m -o load-image.all.min.js --source-map url=load-image.all.min.js.map",
+    "format": "prettier-eslint --no-semi --single-quote --write **/*.js",
+    "lint": "eslint .",
+    "mocha": "mocha-chrome http://127.0.0.1:$PORT/test",
+    "postversion": "git push --tags origin master master:gh-pages && npm publish",
+    "preversion": "npm test",
+    "serve": "http-server . -a 127.0.0.1 -p $PORT -s",
+    "test": "npm run lint && npm run unit",
+    "unit": "PORT=$(get-port) concurrently -k -s first 'npm run serve' 'npm run mocha'",
+    "version": "npm run build && git add -A js"
+  },
+  "title": "JavaScript Load Image",
+  "version": "2.18.0"
 }

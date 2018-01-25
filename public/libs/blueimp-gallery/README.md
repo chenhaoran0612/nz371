@@ -42,6 +42,7 @@
     - [Mobile browsers](#mobile-browsers)
 - [License](#license)
 - [Credits](#credits)
+- [Notable forks](#notable-forks)
 
 ## Demo
 [blueimp Gallery Demo](https://blueimp.github.io/Gallery/)
@@ -903,7 +904,7 @@ minified Gallery script with the jQuery plugin version and include it after
 including [jQuery](https://jquery.com/):
 
 ```html
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="js/jquery.blueimp-gallery.min.js"></script>
 ```
 
@@ -1055,7 +1056,7 @@ The [jQuery plugin](#jquery-plugin) requires
 fullscreen, indicator, video, youtube and vimeo source files are also optional:
 
 ```html
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="js/blueimp-gallery.js"></script>
 <script src="js/blueimp-gallery-fullscreen.js"></script>
 <script src="js/blueimp-gallery-indicator.js"></script>
@@ -1078,6 +1079,13 @@ blueimp Gallery has been tested with and supports the following browsers:
 * Mozilla Firefox 4.0+
 * Opera 10.0+
 * Microsoft Internet Explorer 7.0+
+* Microsoft Edge 41.0+
+
+*Please note:*  
+Microsoft Edge version 40 has a query selector bug which prevents the Gallery
+lightbox demo from opening the image view. This has been fixed in Microsoft Edge
+version 41 and later.  
+Thanks to Kenneth G. Chin for the information.
 
 ### Mobile browsers
 
@@ -1093,3 +1101,6 @@ Released under the [MIT license](https://opensource.org/licenses/MIT).
 ## Credits
 The swipe implementation is based on code from the
 [Swipe](http://swipejs.com/) library.
+
+## Notable Forks
+* [Rollup bundled version by Khoa Nguyen](https://github.com/khoanguyen96/Gallery/tree/rewrite-js)

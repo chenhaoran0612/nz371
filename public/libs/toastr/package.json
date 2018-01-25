@@ -1,38 +1,49 @@
 {
-  "name": "toastr",
-  "filename": "build/toastr.min.js",
-  "main": "toastr.js",
-  "style": "build/toastr.min.css",
-  "version": "2.1.4",
-  "description": "ToastrJS is a JavaScript library for Gnome / Growl type non-blocking notifications. jQuery is required. The goal is to create a simple core library that can be customized and extended.",
-  "homepage": "http://www.toastrjs.com",
-  "keywords": [
-    "Toastr",
-    "ToastrJS",
-    "toastr.js"
+  "_args": [
+    [
+      "toastr@^2.1.4",
+      "/Users/chenhaoran/code/bigshop/nz371"
+    ]
   ],
-  "maintainers": [
-    {
-      "name": "timferrell",
-      "email": "timothyferrell+npm@gmail.com"
-    }
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/CodeSeven/toastr.git"
+  "_from": "toastr@>=2.1.4 <3.0.0",
+  "_id": "toastr@2.1.4",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/toastr",
+  "_nodeVersion": "6.12.1",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/toastr-2.1.4.tgz_1512703281692_0.2893252761568874"
   },
+  "_npmUser": {
+    "email": "timothyferrell+npm@gmail.com",
+    "name": "timferrell"
+  },
+  "_npmVersion": "3.10.10",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "toastr",
+    "raw": "toastr@^2.1.4",
+    "rawSpec": "^2.1.4",
+    "scope": null,
+    "spec": ">=2.1.4 <3.0.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/toastr/-/toastr-2.1.4.tgz",
+  "_shasum": "8b43be64fb9d0c414871446f2db8e8ca4e95f181",
+  "_shrinkwrap": null,
+  "_spec": "toastr@^2.1.4",
+  "_where": "/Users/chenhaoran/code/bigshop/nz371",
   "bugs": {
     "url": "http://stackoverflow.com/questions/tagged/toastr"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://www.opensource.org/licenses/mit-license.php"
-    }
-  ],
   "dependencies": {
     "jquery": ">=1.12.0"
   },
+  "description": "ToastrJS is a JavaScript library for Gnome / Growl type non-blocking notifications. jQuery is required. The goal is to create a simple core library that can be customized and extended.",
   "devDependencies": {
     "gulp": "^3.8.10",
     "gulp-bytediff": "^0.2.0",
@@ -58,28 +69,42 @@
     "plato": "^1.2.2",
     "qunitjs": "~1.14.0"
   },
-  "scripts": {
-    "test": "gulp test"
-  },
-  "gitHead": "1ef00d723691b563b610077a08539391386826b3",
-  "_id": "toastr@2.1.4",
-  "_shasum": "8b43be64fb9d0c414871446f2db8e8ca4e95f181",
-  "_from": "toastr@*",
-  "_npmVersion": "3.10.10",
-  "_nodeVersion": "6.12.1",
-  "_npmUser": {
-    "name": "timferrell",
-    "email": "timothyferrell+npm@gmail.com"
-  },
+  "directories": {},
   "dist": {
     "shasum": "8b43be64fb9d0c414871446f2db8e8ca4e95f181",
     "tarball": "https://registry.npmjs.org/toastr/-/toastr-2.1.4.tgz"
   },
-  "_npmOperationalInternal": {
-    "host": "s3://npm-registry-packages",
-    "tmp": "tmp/toastr-2.1.4.tgz_1512703281692_0.2893252761568874"
+  "filename": "build/toastr.min.js",
+  "gitHead": "1ef00d723691b563b610077a08539391386826b3",
+  "homepage": "http://www.toastrjs.com",
+  "keywords": [
+    "Toastr",
+    "ToastrJS",
+    "toastr.js"
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/mit-license.php"
+    }
+  ],
+  "main": "toastr.js",
+  "maintainers": [
+    {
+      "name": "timferrell",
+      "email": "timothyferrell+npm@gmail.com"
+    }
+  ],
+  "name": "toastr",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/CodeSeven/toastr.git"
   },
-  "directories": {},
-  "_resolved": "https://registry.npmjs.org/toastr/-/toastr-2.1.4.tgz",
-  "readme": "ERROR: No README data found!"
+  "scripts": {
+    "test": "gulp test"
+  },
+  "style": "build/toastr.min.css",
+  "version": "2.1.4"
 }
