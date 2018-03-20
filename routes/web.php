@@ -19,6 +19,13 @@ Route::get('/', function () {
 
 Route::post('/front-login', 'Auth\HomeController@login');
 
+
+Route::get('/article/view/{id}', 'ArticleController@view');
+
+
+
+
+
 Auth::routes();
 
 //未登录重定向与登出重定向
@@ -45,9 +52,27 @@ Route::group(['middleware' => ['web', 'auth', 'permission']], function () {
     Route::post('/user/group/permission/save', 'UserController@userGroupPermissionSave');
     Route::post('/user/group/edit', 'UserController@userGroupEditSave');
     Route::post('/user/group/delete', 'UserController@userGroupDelete');
-    //系统管理节点系统管理
-    Route::get('/system/manage', 'SystemController@manage');
 
+    //文章管理
+    Route::get('/article/index', 'ArticleController@index');
+    Route::get('/article/create', 'ArticleController@create');
+    Route::post('/article/create', 'ArticleController@createSave');
+    Route::get('/article/edit', 'ArticleController@edit');
+    Route::post('/article/edit', 'ArticleController@createSave');
+
+    Route::post('/article/status', 'ArticleController@statusChange');
+    
+    Route::post('/article/delete', 'ArticleController@delete');
+    
+
+    //文章分类管理
+    Route::get('/article/category', 'ArticleController@category');
+    Route::get('/article/category/create', 'ArticleController@categoryCreate');
+    Route::post('/article/category/create', 'ArticleController@categoryCreateSave');
+    Route::get('/article/category/edit', 'ArticleController@categoryEdit');
+    Route::post('/article/category/edit', 'ArticleController@categoryEditSave');
+
+    
 
 });
 

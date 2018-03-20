@@ -31,12 +31,14 @@
 /*Border radius*/
 /*Preloader*/
 
+
+.sidebar .arrow{
+  top:18px!important
+}
 .error-page{
   height: 800px;
 }
-.error-box{
-  width : 80%!important;
-}
+
 .visibility-hide{
   visibility: hidden;
 }

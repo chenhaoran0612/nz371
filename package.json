@@ -43,6 +43,7 @@
     "buble-loader": "^0.3.2",
     "icheck": "^1.0.2",
     "ng-material-floating-button": "^0.6.2",
+    "node-sass": "^4.7.2",
     "sweetalert": "^2.1.0",
     "switchery": "abpetkov/switchery",
     "toastr": "^2.1.4",

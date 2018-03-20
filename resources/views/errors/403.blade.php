@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.outside')
 
 @section('content')
 <section class="error-page">
