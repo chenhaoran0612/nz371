@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ixtron 管理系统 | 登录</title>
+    <title>中牟二高网站管理平台</title>
     <link href="/libs/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="/libs/animate/animate.min.css" rel="stylesheet">
     @yield('extend_css')
@@ -25,7 +25,7 @@
 <div class="container animated fadeInDown">
     <div class="row">
         <div class="col-md-6 col-md-offset-3 register-pannel">
-            <div class="register-pannel-title" ><h1 class="logo-name">ixtron 管理系统</h1></div>
+            <div class="register-pannel-title" ><h1 class="logo-name">中牟二高网站管理平台</h1></div>
 
             <div class="panel panel-default register-pannel-default">
                 <div class="panel-heading">注册</div>
