@@ -69,7 +69,7 @@
     <script src="/js/uploadImage.js"></script>
     <script type="text/javascript">
         //初始化图片
-        var goodsImageUrl = '/banner/images?id=' + {{$banner->id}};
+        var goodsImageUrl = '/banner/images?id=' + {{ $banner?  $banner->id : ''}};
         var parentClassName = 'banner-images';
         initUploadImage(parentClassName, goodsImageUrl, 180, 180);
        
