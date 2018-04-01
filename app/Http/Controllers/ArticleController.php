@@ -7,6 +7,9 @@ use Auth;
 use Validator;
 use App\ArticleCategory;
 use App\Article;
+use App\Banner;
+use App\Services\Qiniu;
+
 
 class ArticleController extends Controller
 {
@@ -91,6 +94,19 @@ class ArticleController extends Controller
         return view('article.view', $data);
     }
 
+    /**
+     * [home description]Home 主页面
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
+    public function home(Request $request)
+    {
+        $data['banner'] = Banner::first();
+        $data['categories'] = ArticleCategory::get();
+
+        return view('article.home', $data);
+    }
+
 
     /**
      * [updateSave description]文章保存
@@ -172,6 +188,82 @@ class ArticleController extends Controller
     	$data['colorMap'] = ArticleCategory::COLOR_MAP;
     	return view('article.category_create' , $data);
     }
+
+    /**
+     * [bannerIndex description]Banner管理
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
+    public function bannerIndex(Request $request)
+    {
+        $user = Auth::user();
+        $data['banner'] = Banner::first();
+        return view('article.banner_index' , $data);
+    }
+
+    /**
+     * [getBannerImage description]
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
+    public function getBannerImage(Request $request)
+    {
+        $user = Auth::user();
+        $images = Banner::pluck('images')->first();
+        if (!$images) {
+            return [];
+        }
+        $images = explode(',', $images);
+        foreach ($images as $key => $image) {
+            $result[] = [
+                'url' => $image,
+                'thumbnailUrl' => $image,
+                'name' => $image,
+            ];
+        }
+        return ['files' => $result];
+    }
+
+    /**
+     * [uploadImage description]上传图片
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
+    public function uploadImage(Request $request)
+    {
+        $files = $request->file('files');
+        foreach ($files as $file) {
+            $qiniu = new Qiniu;
+            $result = $qiniu->upload($file);
+            if ($result['result']) {
+                return [
+                    'files' => [[
+                        'deleteType' => 'DELETE',
+                        'thumbnailUrl' => $result['message']['url'],
+                        'url' => $result['message']['url'],
+                        'type' => $file->getMimeType(),
+                        'name' => $result['message']['url'],
+                    ]]
+                ];
+            }
+        }
+    }
+
+    /** 
+     * [bannerCreate description]创建banner
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
+    public function bannerCreate(Request $request)
+    {
+        $user = Auth::user();
+        
+        $conds = ['id' => $request->get('id')];
+        $fields = ['link_url' => $request->get('link_url') ,'title' => $request->get('title') ,'images' => $request->get('images')];
+        $banner = Banner::updateOrCreate($conds, $fields);
+        return ['result' => true ,'message' => '操作成功'];
+    }
+
 
     /**
      * [categoryCreateSave description]文章分类保存

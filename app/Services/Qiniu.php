@@ -13,11 +13,11 @@ class Qiniu
 {
 
     // 需要填写你的 Access Key 和 Secret Key
-    protected $accessKey = '_nzCuU0NHaZJkXQkQnFa63vuaZUIyUm5EwVYe6Y4';
+    protected $accessKey = 'X65WK2RdjyP8rS_ySlY-eEHHDRj8nDLa09jIVaZz';
 
-    protected $secretKey = 'QityIol_stR7Njo_2c7OIVrswsxlIVujCGHEH_lJ';
+    protected $secretKey = 'iAkNrC5cWTBAOnk8D7FUvTAbIv8Q7B29QGoiaGb5';
 
-    protected $domainName = 'https://img.kirin2.com/';
+    protected $domainName = 'http://p6hkyfbga.bkt.clouddn.com/';
 
     protected $token;
 
@@ -29,14 +29,7 @@ class Qiniu
         // 构建鉴权对象
         $auth = new QiniuAuth($this->accessKey, $this->secretKey);
         // 要上传的空间
-        $bucket = 'kirin2-com';
-
-        // 上传文件到七牛后， 七牛将文件名和文件大小回调给业务服务器
-        // $policy = array(
-        //     'callbackUrl' => 'https://requestb.in/1hlx9b41',
-        //     'callbackBody' => 'filename=$(fname)&filesize=$(fsize)'
-        // );
-        // $token = $auth->uploadToken($bucket, null, 3600, $policy);
+        $bucket = 'image-upload';
         $this->token = $auth->uploadToken($bucket, null, 3600);
         $this->client = new GuzzleClient;
     }

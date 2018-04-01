@@ -21,6 +21,7 @@ return [
             '文章管理' => [
                 'article_category' => '文章分类管理',
                 'article_index' => '文章管理',
+                'article_bannerindex' => 'Banner管理'
             ]
         ],
     ],

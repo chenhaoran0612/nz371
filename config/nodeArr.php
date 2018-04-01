@@ -47,6 +47,13 @@ return [
             'index' => 20
         ],
 
+        'article_bannerindex' => [
+            'url' => '/banner/index',
+            'name' => 'Banner管理',
+            'parent_node' => 'article',
+            'index' => 30
+        ],
+
 
     
         

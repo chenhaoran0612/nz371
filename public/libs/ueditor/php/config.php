@@ -8,14 +8,14 @@
  */
  
 return array(
-	'upload_type' => 'local',  // [qiniu|local] 设置上传方式 qiniu 上传到七牛云存储 ,local 上传到本地
+	'upload_type' => 'qiniu',  // [qiniu|local] 设置上传方式 qiniu 上传到七牛云存储 ,local 上传到本地
 	/* 本地上传配置信息 */
 	'orderby'     => 'asc',   // [desc|asc] 列出文件排序方式，仅仅在本地上传时候有效
 	'root_path'	  => $_SERVER['DOCUMENT_ROOT'], //本地上传 本地的绝对路径
 
 	/* 七牛云存储信息配置 */
-	'bucket'      => 'kirin-img', // 七牛Bucket的名称
-	'host'        => 'http://img.glb.lanx2.com',
+	'bucket'      => 'image-upload', // 七牛Bucket的名称
+	'host'        => 'http://img.nz371.com',
 	'access_key'  => 'X65WK2RdjyP8rS_ySlY-eEHHDRj8nDLa09jIVaZz',
 	'secret_key'  => 'iAkNrC5cWTBAOnk8D7FUvTAbIv8Q7B29QGoiaGb5',
 

@@ -22,5 +22,10 @@ class ArticleCategory extends Model
     	'pink' => '粉色'
     ];
 
+    public function article()
+    {
+        return $this->hasMany(Article::class, 'article_category_id', 'id');
+    }
+
     
 }
