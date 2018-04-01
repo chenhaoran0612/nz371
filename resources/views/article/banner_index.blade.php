@@ -18,19 +18,19 @@
                                         <div class="col-md-6" style="display: none;">
                                             <div class="form-group">
                                                 <label class="control-label">ID <span class="text-danger">*</span></label>
-                                                <input type="text" id="id" name="id" class="form-control" value="{{$banner->id}}" >
+                                                <input type="text" id="id" name="id" class="form-control" value="{{$banner ? $banner->id : ''}}" >
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Banner标题 <span class="text-danger">*</span></label>
-                                                <input type="text" id="title" name="title" class="form-control" value="{{$banner->title}}" >
+                                                <input type="text" id="title" name="title" class="form-control" value="{{$banner ? $banner->title : ''}}" >
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">跳转地址 <span class="text-danger">*</span></label>
-                                                <input type="text" id="link_url" name="link_url" class="form-control" value="{{$banner->link_url}}" >
+                                                <input type="text" id="link_url" name="link_url" class="form-control" value="{{$banner ? $banner->link_url : ''}}" >
                                             </div>
                                         </div>
                                         <div class="col-md-12">
