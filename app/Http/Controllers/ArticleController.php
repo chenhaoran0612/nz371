@@ -161,9 +161,8 @@ class ArticleController extends Controller
      */
     public function home(Request $request)
     {
-        $data['banners'] = Banner::get();
+        $data['banners'] = Banner::orderBy('index')->get();
         $data['categories'] = ArticleCategory::get();
-
         return view('article.home', $data);
     }
 
