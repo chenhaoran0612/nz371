@@ -22,9 +22,9 @@ class ArticleCategory extends Model
     	'pink' => '粉色'
     ];
 
-    public function article()
+    public function getArticleAttribute()
     {
-        return $this->hasMany(Article::class, 'article_category_id', 'id');
+        return Article::where('article_category_id' , $this->id)->orderBy('updated_at')->limit(3)->get();
     }
 
     

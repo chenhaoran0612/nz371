@@ -32,6 +32,49 @@ class ArticleController extends Controller
         return view('article.index' , $data);
     }
 
+    //Logo上传
+    public function uploadArticleImage(Request $request)
+    {
+        $files = $request->file('files');
+        foreach ($files as $file) {
+            $qiniu = new Qiniu;
+            $result = $qiniu->upload($file);
+            if ($result['result']) {
+                return [
+                    'files' => [[
+                        'deleteType' => 'DELETE',
+                        'thumbnailUrl' => $result['message']['url'],
+                        'url' => $result['message']['url'],
+                        'type' => $file->getMimeType(),
+                        'name' => $result['message']['url'],
+                    ]]
+                ];
+            }
+        }
+    }
+
+    //Logo获取
+    public function getArticleImage(Request $request)
+    {
+        $user = Auth::user();
+        $id = $request->id;
+        if (!$id) {
+            return [];
+        }
+        $logo = Article::whereId($id)->pluck('image')->first();
+        if (!$logo) {
+            return [];
+        }
+        $result[] = [
+            'url' => $logo,
+            'thumbnailUrl' => $logo,
+            'name' => $logo,
+        ];
+        return ['files' => $result];
+    }
+
+
+
     /**
      * [create description]文章创建
      * @param  Request $request [description]
@@ -80,6 +123,23 @@ class ArticleController extends Controller
     }
 
     /**
+     * [bannerDelete description]删除Banner
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
+    public function bannerDelete(Request $request)
+    {
+        $id = $request->get('id');
+        
+        $banner = Banner::whereId($id)->first();
+        if(!$banner){
+            return ['result' => false ,'message' => self::DATA_ERROR];
+        }
+        $banner->delete();
+        return ['result' => true ,'message' => self::OPERATE_SUCCESS];
+    }
+
+    /**
      * [view description]文章浏览
      * @param  Request $request [description]
      * @return [type]           [description]
@@ -101,7 +161,7 @@ class ArticleController extends Controller
      */
     public function home(Request $request)
     {
-        $data['banner'] = Banner::first();
+        $data['banners'] = Banner::get();
         $data['categories'] = ArticleCategory::get();
 
         return view('article.home', $data);
@@ -115,7 +175,7 @@ class ArticleController extends Controller
      */
     public function createSave(Request $request){
         $user = Auth::user();
-        $data = $request->only('id', 'title', 'content' ,'article_category_id');
+        $data = $request->only('id', 'title', 'content' ,'article_category_id','image');
         $data['author'] = $user->name;
         //创建
         if (!isset($data['id'])) {
@@ -197,7 +257,7 @@ class ArticleController extends Controller
     public function bannerIndex(Request $request)
     {
         $user = Auth::user();
-        $data['banner'] = Banner::first();
+        $data['banners'] = Banner::orderBy('index')->get();
         return view('article.banner_index' , $data);
     }
 
@@ -209,18 +269,19 @@ class ArticleController extends Controller
     public function getBannerImage(Request $request)
     {
         $user = Auth::user();
-        $images = Banner::pluck('images')->first();
-        if (!$images) {
+        $id = $request->id;
+        if (!$id) {
             return [];
         }
-        $images = explode(',', $images);
-        foreach ($images as $key => $image) {
-            $result[] = [
-                'url' => $image,
-                'thumbnailUrl' => $image,
-                'name' => $image,
-            ];
+        $logo = Banner::whereId($id)->pluck('images')->first();
+        if (!$logo) {
+            return [];
         }
+        $result[] = [
+            'url' => $logo,
+            'thumbnailUrl' => $logo,
+            'name' => $logo,
+        ];
         return ['files' => $result];
     }
 
@@ -249,18 +310,36 @@ class ArticleController extends Controller
         }
     }
 
-    /** 
-     * [bannerCreate description]创建banner
+    /**
+     * [create description]文章创建
      * @param  Request $request [description]
      * @return [type]           [description]
      */
     public function bannerCreate(Request $request)
     {
         $user = Auth::user();
+        $data['banner'] = Banner::whereId($request->get('id'))->first();
+        return view('article.banner_create' , $data);
+    }
+
+
+    /** 
+     * [bannerCreate description]创建banner
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
+    public function bannerCreateSave(Request $request)
+    {
+        $user = Auth::user();
+        $id = $request->get('id');
+        $fields = ['link_url' => $request->get('link_url') ,'title' => $request->get('title') ,'images' => $request->get('images') ,'index' => $request->get('index')];
+        if($id){
+            $conds = ['id' => $id];
+            Banner::updateOrCreate($conds, $fields);
+        }else{
+            Banner::create($fields);
+        }
         
-        $conds = ['id' => $request->get('id')];
-        $fields = ['link_url' => $request->get('link_url') ,'title' => $request->get('title') ,'images' => $request->get('images')];
-        $banner = Banner::updateOrCreate($conds, $fields);
         return ['result' => true ,'message' => '操作成功'];
     }
 

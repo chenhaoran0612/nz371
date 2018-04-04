@@ -30,7 +30,8 @@ return [
     'relation_permission' => [
         'user_subaccount' => 'user_subaccountcreate,user_subaccountedit',
         'article_category' => 'article_categorycreate,article_categoryedit',
-        'article_index' => 'article_create,article_edit'
+        'article_index' => 'article_create,article_edit',
+        'article_bannerindex' => 'article_bannercreate'
     ],
     //公共权限
     'public_permission' => [

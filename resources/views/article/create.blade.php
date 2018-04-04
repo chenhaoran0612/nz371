@@ -50,6 +50,22 @@
                                             <input type="text" id="author" name="author" class="form-control" readonly value="{{Auth::user()->name}}">
                                         </div>
                                     </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="tab-pane row goodsImageParent">
+                                                <div class="col-md-12 form-group">
+                                                    <label class="control-label">主页展示图片</label>
+                                                    <hr>
+                                                    <div class="article-images" >
+                                                        @include('form.single-image')
+                                                    </div>
+                                                    <input type="hidden" name="images" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="col-sm-12 form-group">
                                         <div class="form-group">
                                             <label class="control-label">文章内容</label>
@@ -80,6 +96,7 @@
 @section('extend_js')
 <script type="text/javascript" charset="utf-8" src="/libs/ueditor/ueditor.config.js"></script>
 <script type="text/javascript" charset="utf-8" src="/libs/ueditor/ueditor.all.min.js"></script>
+<script src="/js/uploadImage.js"></script>
 <script type="text/javascript">
 @if ( session('result'))
     toastr.success("{{session('message')}}");
@@ -89,12 +106,17 @@
 
 
 <script type="text/javascript">
+
+var goodsImageUrl = '/article/images?id= {{ $article?  $article->id : ""}}'  ;
+var parentClassName = 'article-images';
+initSingleUploadImage(parentClassName, goodsImageUrl, 180, 180);
+
 $('.article_submit').click(function(){
     var title = $('[name=title]').val();
     var content = ue.getContent();
     var article_category_id = $('[name=article_category_id]').val();
     var id = $('[name=id]').val();
-
+    var image = getSingleUploadImage('article-images');
     $.ajax({
         type: "POST",
         url: "/article/create",
@@ -103,7 +125,8 @@ $('.article_submit').click(function(){
             title : title,
             content : content,
             article_category_id : article_category_id,
-            id : id
+            id : id,
+            image : image
         },
         success: function(d) {
             if(d.result){

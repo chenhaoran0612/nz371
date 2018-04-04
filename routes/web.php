@@ -19,12 +19,8 @@ Route::get('/', function () {
 
 Route::post('/front-login', 'Auth\HomeController@login');
 
-
 Route::get('/article/view/{id}', 'ArticleController@view');
 Route::get('/article/home', 'ArticleController@home');
-
-
-
 
 Auth::routes();
 
@@ -60,6 +56,11 @@ Route::group(['middleware' => ['web', 'auth', 'permission']], function () {
     Route::get('/article/edit', 'ArticleController@edit');
     Route::post('/article/edit', 'ArticleController@createSave');
 
+    Route::post('/article/images', 'ArticleController@uploadArticleImage');
+    Route::get('/article/images', 'ArticleController@getArticleImage');
+
+    
+
     Route::post('/article/status', 'ArticleController@statusChange');
     
     Route::post('/article/delete', 'ArticleController@delete');
@@ -69,9 +70,10 @@ Route::group(['middleware' => ['web', 'auth', 'permission']], function () {
 
     Route::post('/banner/images', 'ArticleController@uploadImage');
 
-    Route::post('/banner/create', 'ArticleController@bannerCreate');
-    
-    
+    Route::post('/banner/create', 'ArticleController@bannerCreateSave');
+    Route::get('/banner/create', 'ArticleController@bannerCreate');
+    Route::post('/banner/delete', 'ArticleController@bannerDelete');
+
 
     //文章分类管理
     Route::get('/article/category', 'ArticleController@category');

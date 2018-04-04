@@ -57,13 +57,71 @@ function initUploadImage(parentClassName, getImageUrl, previewMaxWidth, previewM
 	});
 
 	$('.'+parentClassName+' .fileupload').fileupload('option', {
-	     maxFileSize: 999000,
+	     maxFileSize: 5 * 1024 * 1024,
 	     previewMaxWidth: previewMaxWidth,
 	     previewMaxHeight: previewMaxHeight,
-	     acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i
+	     acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+	     maxNumberOfFiles: 9,
+	     messages: {
+	         maxFileSize: '文件不能大于5MB',
+	         acceptFileTypes: '文件类型错误',
+	         maxNumberOfFiles : '最多上传9张图片'
+	     },processfail: function (e, data) {
+	        var currentFile = data.files[data.index];
+	        if (data.files.error && currentFile.error) {
+	        	$('.warning_file').css('display', 'block').prepend(currentFile.name + '&nbsp;&nbsp;&nbsp;&nbsp;' + currentFile.error + '<br>');
+	            $('.upload-submit').attr('disabled', true);
+	        }
+	     }
 	});
 	
 }
+
+
+function initSingleUploadImage(parentClassName, getImageUrl, previewMaxWidth, previewMaxHeight)
+{
+	// Initialize the jQuery File Upload widget:
+	$('.'+parentClassName+' .fileupload').fileupload({
+	    // Uncomment the following to send cross-domain cookies:
+	    //xhrFields: {withCredentials: true},
+	    url: getImageUrl
+	});
+	
+	// Load existing files:
+	$('.'+parentClassName+' .fileupload').addClass('fileupload-processing');
+	$.ajax({
+	    // Uncomment the following to send cross-domain cookies:
+	    //xhrFields: {withCredentials: true},
+	    url: $('.'+parentClassName+' .fileupload').fileupload('option', 'url'),
+	    dataType: 'json',
+	    context: $('.'+parentClassName+' .fileupload')[0]
+	}).always(function () {
+	    $(this).removeClass('fileupload-processing');
+	}).done(function (result) {
+	    $(this).fileupload('option', 'done')
+	            .call(this, $.Event('done'), {result: result});
+	});
+
+	$('.'+parentClassName+' .fileupload').fileupload('option', {
+	     maxFileSize: 5 * 1024 * 1024,
+	     previewMaxWidth: previewMaxWidth,
+	     previewMaxHeight: previewMaxHeight,
+	     acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+	     maxNumberOfFiles: 1,
+	     messages: {
+	         maxFileSize: '文件不能大于5MB',
+	         acceptFileTypes: '文件类型错误',
+	         maxNumberOfFiles : '最多上传1张图片'
+	     },processfail: function (e, data) {
+	        var currentFile = data.files[data.index];
+	        if (data.files.error && currentFile.error) {
+	        	$('.warning_file').css('display', 'block').prepend(currentFile.name + '&nbsp;&nbsp;&nbsp;&nbsp;' + currentFile.error + '<br>');
+	            $('.upload-submit').attr('disabled', true);
+	        }
+	     }
+	});
+}
+
 
 function getUploadImage(parentClassName){
 	var images = '';
@@ -75,3 +133,86 @@ function getUploadImage(parentClassName){
 	})
 	return images.substring(0,images.length-1);
 }
+
+function getSingleUploadImage(parentClassName){
+	var images = '';
+	$('.'+parentClassName+' .fileupload .template-download').each(function(k, v){
+	    curImage = $(this).find('.preview').find('a').attr('href');
+	});
+	console.log(curImage);
+	if(typeof(curImage) == 'undefined'){
+		curImage ='/images/no_pic.jpg'
+	}
+	return curImage;
+}
+
+
+function imageDelete(obj)
+{
+	var imageLength = $(obj).parents('.files').find('.preview').length;
+	if (imageLength <= 10) {
+		$('.upload-submit').attr('disabled', false);
+	} else {
+		$('.upload-submit').attr('disabled', true);
+	}
+}
+
+
+function initFbaTab(parentClassName, getImageUrl, previewMaxWidth, previewMaxHeight)
+{
+	// Initialize the jQuery File Upload widget:
+	$('.'+parentClassName+' .fileupload').fileupload({
+	    // Uncomment the following to send cross-domain cookies:
+	    //xhrFields: {withCredentials: true},
+	    url: getImageUrl
+	});
+	
+	// Load existing files:
+	$('.'+parentClassName+' .fileupload').addClass('fileupload-processing');
+	$.ajax({
+	    // Uncomment the following to send cross-domain cookies:
+	    //xhrFields: {withCredentials: true},
+	    url: $('.'+parentClassName+' .fileupload').fileupload('option', 'url'),
+	    dataType: 'json',
+	    context: $('.'+parentClassName+' .fileupload')[0]
+	}).always(function () {
+	    $(this).removeClass('fileupload-processing');
+	}).done(function (result) {
+	    $(this).fileupload('option', 'done')
+	            .call(this, $.Event('done'), {result: result});
+	});
+
+	$('.'+parentClassName+' .fileupload').fileupload('option', {
+	     maxFileSize: 5 * 1024 * 1024,
+	     previewMaxWidth: previewMaxWidth,
+	     previewMaxHeight: previewMaxHeight,
+	     acceptFileTypes: /(\.|\/)(pdf)$/i,
+	     // maxNumberOfFiles: 2,
+	     messages: {
+	         maxFileSize: '文件不能大于5MB',
+	         acceptFileTypes: '文件类型错误',
+	         // maxNumberOfFiles : '最多上传2个文件'
+	     },processfail: function (e, data) {
+	        var currentFile = data.files[data.index];
+	        if (data.files.error && currentFile.error) {
+	        	$('.warning_file').css('display', 'block').prepend(currentFile.name + '&nbsp;&nbsp;&nbsp;&nbsp;' + currentFile.error + '<br>');
+	            $('.upload-submit').attr('disabled', true);
+	        }
+	     }
+	});
+}
+
+function getUploadFile(parentClassName){
+	var images = '';
+	$('.'+parentClassName+' .files .template-download').each(function(k, v){
+	    curImage = $(this).find('a').attr('href');
+	    if (curImage) {
+	        images += curImage+',';
+	    }
+	})
+	return images.substring(0,images.length-1);
+}
+
+
+
+
