@@ -123,6 +123,23 @@ class ArticleController extends Controller
     }
 
     /**
+     * [categoryDelete description]分类删除
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
+    public function categoryDelete(Request $request)
+    {
+        $id = $request->get('id');
+        
+        $banner = ArticleCategory::whereId($id)->first();
+        if(!$banner){
+            return ['result' => false ,'message' => self::DATA_ERROR];
+        }
+        $banner->delete();
+        return ['result' => true ,'message' => self::OPERATE_SUCCESS];
+    }
+
+    /**
      * [bannerDelete description]删除Banner
      * @param  Request $request [description]
      * @return [type]           [description]

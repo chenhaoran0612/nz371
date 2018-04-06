@@ -58,6 +58,7 @@
                                 <td>{{ $colorMap[$category->content_color] }}</td>
                                 <td>
                                     <a type="button" href="/article/category/edit?id={{$category->id}}" class="btn btn-info btn-outline btn-circle btn-sm m-r-5"><i class="ti-pencil-alt"></i></a>
+                                    <button type="button" class="btn btn-danger btn-outline btn-circle btn-sm m-r-5 delete" data-id="{{$category->id}}"><i class="ti-trash"></i></button>
                                 </td>
                             </tr>
                             @endforeach
@@ -80,6 +81,38 @@
             $(".left-sidebar").addClass('shw-left-rside');
         }
         $(".shw-left-rside").width($(".bg-title").width() + 20);
+    });
+
+    $('.delete').click(function () {
+        var id = $(this).data('id')
+        swal({
+          dangerMode: true,
+          title: "确定要删除吗?",
+          type: "warning",
+          icon: "warning",
+          buttons: ["取消","确认"],
+        })
+        .then(willDelete => {
+          if (willDelete) {
+
+            $.ajax({
+                type: "post",
+                url: "/category/delete",
+                dataType: "json",
+                data :{
+                    id : id,
+                },
+                success: function(r) {
+                    if(r.result){
+                        swal(r.message, "", "success");
+                        window.location.reload();
+                    }else{
+                        swal(r.message, "", "error");
+                    }
+                }
+            });
+          }
+        });
     });
 
     $(".search-close").click(function(){

@@ -82,6 +82,7 @@ Route::group(['middleware' => ['web', 'auth', 'permission']], function () {
     Route::get('/article/category/edit', 'ArticleController@categoryEdit');
     Route::post('/article/category/edit', 'ArticleController@categoryEditSave');
 
+    Route::post('/category/delete', 'ArticleController@categoryDelete');
     
 
 });
