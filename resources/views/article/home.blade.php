@@ -33,7 +33,7 @@
     .overlaybgs{
         background-position: center;
         background-repeat: no-repeat;
-        background-size: contain;
+        background-size: cover;
         width: 100%;
         height: 240px;
     }
@@ -80,7 +80,7 @@
 @section('content')
 
 <div class="col-lg-12 col-sm-12 col-xs-12" style="padding: 0">
-    <div class="news-slide m-b-30">
+    <div class="news-slide">
         <div class="vcarousel slide">
             <div class="carousel-inner">
                 @foreach($banners as $one)
