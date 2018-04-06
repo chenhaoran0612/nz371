@@ -66,6 +66,13 @@
     p{
         margin-bottom: 4px!important;
     }
+    .image-div{
+        width: 40px;
+        height: 40px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
 </style>
 <style type="text/css">
     
@@ -91,8 +98,41 @@
         </div>
     </div>
 </div>
+<div class="col-lg-12 col-sm-12 col-xs-12" style="padding: 0 ; clear: both;">
+    <div class="vtabs">
+        <ul class="nav tabs-vertical">
+            @foreach($categories as $category)
+                <li class="tab @if ($categories[0]['id'] == $category['id']) active @endif">
+                    <a style="background: {{$category->content_color}};padding: 15px;margin-bottom: 0;width: 90px;" data-toggle="tab" href="#category-{{$category['id']}}" aria-expanded="false"> 
+                        <span class="visible-xs">{{$category['category_name']}}</span> 
+                    </a>
+                </li>
+            @endforeach
+        </ul>
+        <div class="tab-content" style="padding: 0;width: 100%;overflow: hidden;">
+            @foreach($categories as $category)
+                <div id="category-{{$category['id']}}" class="tab-pane">
+                    <div class="table">
+                        <table class="table">
+                            <tbody>
+                                @foreach($category->article as $one)
+                                    <tr style="font-size: 8px;">
+                                        <td><div style="background-image: url({{$one['image']}});" class="image-div"></div>
+                                        </td>
+                                        <td>{{$one['title']}}</td>
+                                        <td style="width: 90px">{{ substr($one['created_at'] , 0 ,10)}}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</div>
 
-<div style="clear: both;">
+{{--<div style="clear: both;">
 @foreach($categories as $category)
     <div class="category-div" >
         <p class="title" style="border-bottom: 1px solid {{$category->content_color}};">{{$category->category_name}}</p>
@@ -113,10 +153,13 @@
     </div>
 @endforeach
 </div>
+--}}
 @endsection
 @section('extend_js')
 <script type="text/javascript">
  $('.carousel-inner').carousel('cycle');
-
+ window.onload  = function (){
+    $('#category-{{$categories[0]["id"]}}').addClass('active');
+ }
 </script>
 @endsection
