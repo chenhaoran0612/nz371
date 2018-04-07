@@ -40,24 +40,26 @@
           -webkit-animation-animation-iteration-count:1;
           color: black;
      }
+     .overlay-dark-5:before{
+        opacity: 0.1;
+     }
 
 </style>
 @section('content')
 
-<div class="highlight-post overlay-dark-5" style="margin: 0;padding: 0">
-        <div class="container-fluid" style="padding: 0;float: left;top: 50px;position: relative;">
+<div class="highlight-post overlay-dark-5" style="background-image:url('{{$banners[0]['images']}}');margin: 0;background-attachment:inherit">
+        <div class="container-fluid" style="padding: 0;float: left;top: -150px;position: relative;">
             <div class="intro">
                 <h2 class="text-center title">{{$banners[0]['title']}}</h2>
             </div>
         </div>
-        <img src="{{$banners[0]['images']}}" width="100%" style="max-height: 500px;min-height: 200px">
 </div>
 
 <div class="recent-posts" style="padding: 0;margin:0;background-image: url('/images/book.jpg'); background-size: cover;">
         <div class="container-fluid">
             <div class="row headline">
                 <div class="col-sm-12 heading">
-                    <h1 class="text-center" style="font-weight: 800;">文章精选</h1></div>
+                    <h1 class="text-center" style="font-weight: 800;">美文精选</h1></div>
             </div>
             <div class="row posts-wrapper col-2">
                 @foreach($categories as $category)
