@@ -32,6 +32,9 @@
                font-size: 3px;
           }
      }
+     .highlight-post h2{
+        text-shadow:2px 2px mintcream;
+     }
 
      .title {
           animation: tiao_fly 1s 0s alternate infinite;
