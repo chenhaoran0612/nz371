@@ -18,6 +18,7 @@
         <small class="author">作者:{{$article->author}}</small>
         <br>
         <small>发布时间:{{$article->created_at}}</small>
+        <a style="float: right;" href="/article/home">返回主页</a>
         <hr>
         <div class="inline-editor note-air-editor note-editable">
             <div class="content">

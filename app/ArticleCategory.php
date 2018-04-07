@@ -24,7 +24,7 @@ class ArticleCategory extends Model
 
     public function getArticleAttribute()
     {
-        return Article::where('article_category_id' , $this->id)->orderBy('updated_at')->limit(4)->get();
+        return Article::where('article_category_id' , $this->id)->where('status' ,'publish')->orderBy('updated_at')->limit(4)->get();
     }
 
     
