@@ -116,12 +116,16 @@
                         <table class="table">
                             <tbody>
                                 @foreach($category->article as $one)
-                                    <tr style="font-size: 8px;">
+                                    
+                                    <tr style="font-size: 8px;" onclick="openUrl({{$one['id']}})">
+                                        
                                         <td><div style="background-image: url({{$one['image']}});" class="image-div"></div>
                                         </td>
                                         <td>{{$one['title']}}</td>
                                         <td style="width: 90px">{{ substr($one['created_at'] , 0 ,10)}}</td>
+                                        </a>
                                     </tr>
+                                    
                                 @endforeach
                             </tbody>
                         </table>
@@ -160,6 +164,10 @@
  $('.carousel-inner').carousel('cycle');
  window.onload  = function (){
     $('#category-{{$categories[0]["id"]}}').addClass('active');
+ }
+
+ function openUrl(id){
+    window.location.href = '/article/view/' + id ;
  }
 </script>
 @endsection

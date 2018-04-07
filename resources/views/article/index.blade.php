@@ -82,8 +82,6 @@
 @section('extend_js')
 <script src="/libs/switchery/dist/switchery.js"></script>
 <script type="text/javascript">
-    
-
     $('.delete').click(function () {
         var id = $(this).data('id')
         swal({

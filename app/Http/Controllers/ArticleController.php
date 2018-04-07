@@ -10,6 +10,8 @@ use App\Article;
 use App\Banner;
 use App\Services\Qiniu;
 
+use App\Services\Helper\Helper;
+
 
 class ArticleController extends Controller
 {
@@ -180,6 +182,10 @@ class ArticleController extends Controller
     {
         $data['banners'] = Banner::orderBy('index')->get();
         $data['categories'] = ArticleCategory::get();
+        $isMobile = Helper::isMobileClient();
+        if(!$isMobile){
+            return view('article.homePc', $data);
+        }
         return view('article.home', $data);
     }
 
