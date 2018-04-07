@@ -15,13 +15,38 @@
     .image-div:hover{
         height: 180px;
     }
+    @-webkit-keyframes tiao_fly {
+          0% {
+               font-size: 20px;
+          }
+          50% {
+               font-size: 3px;
+          }
+     }
+
+     @keyframes tiao_fly {
+          0% {
+               font-size: 20px;
+          }
+          50% {
+               font-size: 3px;
+          }
+     }
+
+     .title {
+          animation: tiao_fly 1s 0s alternate infinite;
+          -webkit-animation: tiao_fly 1s 0s alternate infinite;
+          animation-iteration-count:1;
+          -webkit-animation-animation-iteration-count:1;
+     }
+
 </style>
 @section('content')
 
 <div class="highlight-post overlay-dark-5" style="background-image:url('{{$banners[0]['images']}}');margin: 0">
-        <div class="container-fluid">
+        <div class="container-fluid" style="padding: 0;float: left;top: -150px;position: relative;">
             <div class="intro">
-                <h2 class="text-center">{{$banners[0]['title']}}</h2>
+                <h2 class="text-center title">{{$banners[0]['title']}}</h2>
             </div>
         </div>
 </div>
