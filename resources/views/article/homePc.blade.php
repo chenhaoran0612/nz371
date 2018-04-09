@@ -22,7 +22,7 @@
           <div class="content-wrapper clearfix wow fadeInDown animated" data-wow-delay="0.3s" style="position: absolute; visibility: visible; animation-delay: 0.3s; animation-name: fadeInDown;">
             <div class="col-sm-10 col-md-9 pull-right">
                 <section class="feature-text">
-                  <h1>中牟二高</h1>
+                  <h1>中牟二高生涯规划平台</h1>
                   <p>欢迎来到中牟二高生涯规划 & 心理指导中心</p>
                 </section>
 
@@ -34,7 +34,7 @@
         <article id="{{$category->id}}" class="section-wrapper clearfix" data-custom-background-img="/imgs/bg3.jpg">
           <div class="content-wrapper clearfix" style="position: absolute;">
             <div class="col-sm-11 pull-right">
-                <h1 class="section-title" style="text-align: left;">{{$category->category_name}}</h1>
+                <h1 class="section-title" style="text-align: left;padding: 15px;">{{$category->category_name}}</h1>
                 <section class="feature-columns row clearfix">
                     @foreach($category->article as $one)
                       <article class="feature-col col-md-3" onclick="openUrl({{$one['id']}})">

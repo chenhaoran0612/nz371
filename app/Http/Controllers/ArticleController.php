@@ -186,7 +186,7 @@ class ArticleController extends Controller
         if(!$isMobile){
             return view('article.homePc', $data);
         }
-        return view('article.home', $data);
+        return view('article.homePc', $data);
     }
 
 
