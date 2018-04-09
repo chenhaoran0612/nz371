@@ -1,97 +1,76 @@
-@extends('layouts.outside')
-<link href="/css/index.css" rel="stylesheet">
-
-<style type="text/css">
-    .image-div{
-        width: 100%;
-        height: 150px;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        -webkit-transition: all .2s ease-in-out;
-        transition: all 0.2s ease-in-out;
-        box-shadow: 0 0 40px 2px #e8ecec;
-    }
-    .image-div:hover{
-        height: 180px;
-    }
-    @-webkit-keyframes tiao_fly {
-          0% {
-               font-size: 20px;
-          }
-          50% {
-               font-size: 3px;
-          }
-     }
-
-     @keyframes tiao_fly {
-          0% {
-               font-size: 20px;
-          }
-          50% {
-               font-size: 3px;
-          }
-     }
-     .highlight-post h2{
-        text-shadow:2px 2px mintcream;
-     }
-
-     .title {
-          animation: tiao_fly 1s 0s alternate infinite;
-          -webkit-animation: tiao_fly 1s 0s alternate infinite;
-          animation-iteration-count:1;
-          -webkit-animation-animation-iteration-count:1;
-          color: black;
-     }
-     .overlay-dark-5:before{
-        opacity: 0.1;
-     }
-
-</style>
+@extends('layouts.outside-pc')
 @section('content')
-
-<div class="highlight-post overlay-dark-5" style="background-image:url('{{$banners[0]['images']}}');margin: 0;background-attachment:inherit">
-        <div class="container-fluid" style="padding: 0;float: left;top: -150px;position: relative;">
-            <div class="intro">
-                <h2 class="text-center title">{{$banners[0]['title']}}</h2>
-            </div>
+<body data-default-background-img="/imgs/bg5.jpg" data-overlay="true" data-overlay-opacity="0.35"><div class="vegas-overlay" style="margin: 0px; padding: 0px; position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; background-size: contain; background-image: url(&quot;/imgs/background-image-overlay-full.png&quot;); opacity: 0.35;"></div><img class="vegas-background" src="/imgs/bg5.jpg" style="position: fixed; left: 0px; top: 0px; width: 2200px; height: 1200px; bottom: auto; right: auto;">   
+    <!-- Outer Container -->
+    <div id="outer-container">
+      <!-- Left Sidebar -->
+      <section id="left-sidebar">
+        <div class="logo">
+          <a href="#intro" class="link-scroll"><img src="/imgs/logo.png" alt="中牟二高"></a>
         </div>
-</div>
+        <div id="mobile-menu-icon" class="visible-xs" onclick="toggle_main_menu();"><span class="glyphicon glyphicon-th"></span></div>
 
-<div class="recent-posts" style="padding: 0;margin:0;background-image: url('/images/book.jpg'); background-size: cover;">
-        <div class="container-fluid">
-            <div class="row headline">
-                <div class="col-sm-12 heading">
-                    <h1 class="text-center" style="font-weight: 800;">美文精选</h1></div>
-            </div>
-            <div class="row posts-wrapper col-2">
-                @foreach($categories as $category)
-                    <section>
-                        <h3 style="line-height: 5">{{$category['category_name']}}</h3>
-                        <div class="row" style="margin: 0;">
-                            @foreach($category->article as $one)
-                            <div class="col-sm-6 col-md-3" onclick="openUrl({{$one['id']}})">
-                                <div class="blog block text-center">
-                                    <div class="image-div" style="background-image: url({{$one['image'] ? $one['image'] : '/images/no_pic.jpg'}});">
-                                    </div>
-                                    <p style="font-size: 20px;font-weight: bold;margin-top: 15px;">{{$one['title']}}</p>
-                                </div>
-                            </div>
-                            @endforeach
-                        </div><!-- / row -->
-                    </section>
-                @endforeach
-                <div class="clearfix"></div>
-            </div>
-        </div>
-</div>
-<footer class="site-footer">
-        <ul class="list-inline text-center footer-menu">
-            <li><a href="#">关于</a></li>
-            <li><a href="#">联系我们</a></li>
+        <ul id="main-menu">
+          @foreach($categories as $category)
+            <li class="menu-item scroll"><a href="#{{$category->id}}">{{$category->category_name}}</a></li>
+          @endforeach
         </ul>
-        <p class="text-center copyright">Powered by Haoran</p>
-</footer>
+      </section>
+
+      <section id="main-content" class="clearfix">
+        <article id="intro" class="section-wrapper clearfix active" data-custom-background-img="/imgs/bg5.jpg">
+          <div class="content-wrapper clearfix wow fadeInDown animated" data-wow-delay="0.3s" style="position: absolute; visibility: visible; animation-delay: 0.3s; animation-name: fadeInDown;">
+            <div class="col-sm-10 col-md-9 pull-right">
+                <section class="feature-text">
+                  <h1>中牟二高</h1>
+                  <p>欢迎来到中牟二高生涯规划 & 心理指导中心</p>
+                </section>
+
+            </div><!-- .col-sm-10 -->
+          </div><!-- .content-wrapper -->
+        </article><!-- .section-wrapper -->
+
+        @foreach($categories as $category)
+        <article id="{{$category->id}}" class="section-wrapper clearfix" data-custom-background-img="/imgs/bg3.jpg">
+          <div class="content-wrapper clearfix" style="position: absolute;">
+            <div class="col-sm-11 pull-right">
+                <h1 class="section-title" style="text-align: left;">{{$category->category_name}}</h1>
+                <section class="feature-columns row clearfix">
+                    @foreach($category->article as $one)
+                      <article class="feature-col col-md-3" onclick="openUrl({{$one['id']}})">
+                          <div class="image-container">
+                            <img data-img-src="{{$one['image'] ? $one['image'] : '/images/no_pic.jpg'}}" class="item-thumbnail" alt="imgs" src="{{$one['image'] ? $one['image'] : '/images/no_pic.jpg'}}" style="width: 100%">
+                          </div>
+                          <div class="caption">
+                            <p style="text-align: left;">{{$one['title']}}</p>
+                          </div>
+                      </article>
+                    @endforeach
+                </section>
+            </div><!-- .col-sm-10 -->
+          </div><!-- .content-wrapper -->
+        </article><!-- .section-wrapper -->
+        @endforeach
+
+      </section>
+      <section id="footer">
+        <div id="go-to-top" onclick="scroll_to_top();" class=""><span class="icon glyphicon glyphicon-chevron-up"></span></div>
+        <div class="footer-text-line">© 2018 ChenHaoRan | Tec</div>
+      </section> 
+
+    </div>
+    <div class="modal fade" id="common-modal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <div class="modal-body clearfix">
+          </div><!-- .modal-body -->
+        </div><!-- .modal-content -->
+      </div><!-- .modal-dialog -->
+    </div><!-- .modal -->    
+
+
+</body>
 
 @endsection
 @section('extend_js')
