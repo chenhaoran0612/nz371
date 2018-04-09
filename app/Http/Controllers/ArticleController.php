@@ -182,10 +182,7 @@ class ArticleController extends Controller
     {
         $data['banners'] = Banner::orderBy('index')->get();
         $data['categories'] = ArticleCategory::get();
-        $isMobile = Helper::isMobileClient();
-        if(!$isMobile){
-            return view('article.homePc', $data);
-        }
+        $data['isMobile'] = Helper::isMobileClient();
         return view('article.homePc', $data);
     }
 

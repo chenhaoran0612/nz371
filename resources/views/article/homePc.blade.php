@@ -1,6 +1,6 @@
 @extends('layouts.outside-pc')
 @section('content')
-<body data-default-background-img="/imgs/bg5.jpg" data-overlay="true" data-overlay-opacity="0.35"><div class="vegas-overlay" style="margin: 0px; padding: 0px; position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; background-size: contain; background-image: url(&quot;/imgs/background-image-overlay-full.png&quot;); opacity: 0.35;"></div><img class="vegas-background" src="/imgs/bg5.jpg" style="position: fixed; left: 0px; top: 0px; width: 2200px; height: 1200px; bottom: auto; right: auto;">   
+<body data-default-background-img="/imgs/bg5.jpg" data-overlay="true" data-overlay-opacity="0.1"><div class="vegas-overlay" style="margin: 0px; padding: 0px; position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; background-size: contain; background-image: url(&quot;/imgs/background-image-overlay-full.png&quot;);opacity: .1"></div><img class="vegas-background" src="/imgs/bg5.jpg" style="position: fixed; left: 0px; top: 0px; width: 2200px; height: 1200px; bottom: auto; right: auto;">   
     <!-- Outer Container -->
     <div id="outer-container">
       <!-- Left Sidebar -->
@@ -12,9 +12,9 @@
 
         <ul id="main-menu">
           @foreach($categories as $category)
-            <li class="menu-item scroll"><a href="#{{$category->id}}">{{$category->category_name}}</a></li>
+            <li id="menu-item-{{$category->id}}" class="menu-item scroll"><a href="#{{$category->id}}">{{$category->category_name}}</a></li>
           @endforeach
-          <li class="menu-item scroll"><a href="#about">关于</a></li>
+          <li id="menu-item-about" class="menu-item scroll"><a href="#about">关于</a></li>
         </ul>
       </section>
 
@@ -37,7 +37,7 @@
                 <h1 class="section-title" style="text-align: left;padding: 15px;">{{$category->category_name}}</h1>
                 <section class="feature-columns row clearfix">
                     @foreach($category->article as $one)
-                      <article class="feature-col col-md-3" onclick="openUrl({{$one['id']}})">
+                      <article class="feature-col col-md-3" onclick="open({{$one['id']}})">
                           <div class="image-container">
                             <img data-img-src="{{$one['image'] ? $one['image'] : '/images/no_pic.jpg'}}" class="item-thumbnail" alt="imgs" src="{{$one['image'] ? $one['image'] : '/images/no_pic.jpg'}}" style="width: 100%">
                           </div>
@@ -47,9 +47,9 @@
                       </article>
                     @endforeach
                 </section>
-            </div><!-- .col-sm-10 -->
-          </div><!-- .content-wrapper -->
-        </article><!-- .section-wrapper -->
+            </div>
+          </div>
+        </article>
         @endforeach
 
         <article id="about" class="section-wrapper clearfix active" data-custom-background-img="/imgs/bg5.jpg">
@@ -87,8 +87,8 @@
 @endsection
 @section('extend_js')
 <script type="text/javascript">
-$('.carousel-inner').carousel('cycle');
-function openUrl(id){
+
+function open(id){
    window.location.href = '/article/view/' + id ;
 }
 </script>
