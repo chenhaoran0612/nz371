@@ -57,7 +57,7 @@
             <div class="col-sm-10 col-md-9 pull-right">
                 <section class="feature-text">
                   <h1>关于</h1>
-                  <p>我们立志于高中生职业生涯规划教育。让学生真正发觉自己想要的生活。</p>
+                  <p>我们立志于高中生职业生涯规划教育。让学生发现自己真正想要的人生。</p>
                   <p>如需帮助请联系：中牟二高 潘老师</p>
                 </section>
             </div>
