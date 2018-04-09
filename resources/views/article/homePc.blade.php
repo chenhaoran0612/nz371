@@ -14,6 +14,7 @@
           @foreach($categories as $category)
             <li class="menu-item scroll"><a href="#{{$category->id}}">{{$category->category_name}}</a></li>
           @endforeach
+          <li class="menu-item scroll"><a href="#about">关于</a></li>
         </ul>
       </section>
 
@@ -25,14 +26,13 @@
                   <h1>中牟二高生涯规划平台</h1>
                   <p>欢迎来到中牟二高生涯规划 & 心理指导中心</p>
                 </section>
-
-            </div><!-- .col-sm-10 -->
-          </div><!-- .content-wrapper -->
-        </article><!-- .section-wrapper -->
+            </div>
+          </div>
+        </article>
 
         @foreach($categories as $category)
-        <article id="{{$category->id}}" class="section-wrapper clearfix" data-custom-background-img="/imgs/bg3.jpg">
-          <div class="content-wrapper clearfix" style="position: absolute;">
+        <article id="{{$category->id}}" class="section-wrapper clearfix" data-custom-background-img="/imgs/bg{{$category->id % 7 + 1}}.jpg">
+          <div class="content-wrapper clearfix" style="position: absolute;top: 0">
             <div class="col-sm-11 pull-right">
                 <h1 class="section-title" style="text-align: left;padding: 15px;">{{$category->category_name}}</h1>
                 <section class="feature-columns row clearfix">
@@ -51,6 +51,18 @@
           </div><!-- .content-wrapper -->
         </article><!-- .section-wrapper -->
         @endforeach
+
+        <article id="about" class="section-wrapper clearfix active" data-custom-background-img="/imgs/bg5.jpg">
+          <div class="content-wrapper clearfix wow fadeInDown animated" data-wow-delay="0.3s" style="position: absolute; visibility: visible; animation-delay: 0.3s; animation-name: fadeInDown;">
+            <div class="col-sm-10 col-md-9 pull-right">
+                <section class="feature-text">
+                  <h1>关于</h1>
+                  <p>我们立志于高中生职业生涯规划教育。让学生真正发觉自己想要的生活。</p>
+                  <p>如需帮助请联系：中牟二高 潘老师</p>
+                </section>
+            </div>
+          </div>
+        </article>
 
       </section>
       <section id="footer">
