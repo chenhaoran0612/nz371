@@ -155,7 +155,12 @@ class User extends Authenticatable
                     return [];
                 }
                 break;
-            
+            case 'student':
+                $vendorPermission = config('modelPermission.normal_permission.student');
+                foreach ($vendorPermission as $key => $student) {
+                    $permission = array_merge($permission, array_keys($student));
+                }
+                return $this->matchPermission($permission);
             default:
                 return [];
                 break;
