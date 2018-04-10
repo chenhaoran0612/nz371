@@ -174,6 +174,21 @@ class ArticleController extends Controller
     }
 
     /**
+     * [articleView description]文章内容获取
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
+    public function articleView(Request $request)
+    {
+        $id = $request->get('id');
+        $article = Article::whereId($id)->where('status' ,'publish')->first();
+        if(!$article){
+            return ['result' => false ,'html' => '文章获取失败'];
+        }
+        return ['result' => true ,'html' => $article->content];
+    }
+
+    /**
      * [home description]Home 主页面
      * @param  Request $request [description]
      * @return [type]           [description]

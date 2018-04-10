@@ -37,7 +37,7 @@
                 <h1 class="section-title" style="text-align: left;padding: 15px;">{{$category->category_name}}</h1>
                 <section class="feature-columns row clearfix">
                     @foreach($category->article as $one)
-                      <article class="feature-col col-md-3" onclick="open({{$one['id']}})">
+                      <article class="feature-col col-md-3" onclick="openUrl({{$one['id']}})">
                           <div class="image-container">
                             <img data-img-src="{{$one['image'] ? $one['image'] : '/images/no_pic.jpg'}}" class="item-thumbnail" alt="imgs" src="{{$one['image'] ? $one['image'] : '/images/no_pic.jpg'}}" style="width: 100%">
                           </div>
@@ -57,7 +57,8 @@
             <div class="col-sm-10 col-md-9 pull-right">
                 <section class="feature-text">
                   <h1>关于</h1>
-                  <p>我们立志于高中生职业生涯规划教育。让学生发现自己真正想要的人生。</p>
+                  <p>给心灵加氧 为成长引路</p>
+                  <p>倾听 陪伴 引领 成长</p>
                   <p>如需帮助请联系：中牟二高 潘老师</p>
                 </section>
             </div>
@@ -75,7 +76,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-          <div class="modal-body clearfix">
+          <div class="modal-body clearfix" id="content-body">
           </div><!-- .modal-body -->
         </div><!-- .modal-content -->
       </div><!-- .modal-dialog -->
@@ -87,9 +88,29 @@
 @endsection
 @section('extend_js')
 <script type="text/javascript">
-
-function open(id){
-   window.location.href = '/article/view/' + id ;
+function openUrl(id){
+    if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+        window.location.href = '/article/view/' + id ;
+    } else {
+        $.ajax({
+            type: "get",
+            url: "/article/home/view",
+            dataType: "json",
+            data :{
+                id : id,
+            },
+            success: function(r) {
+                if(r.result){
+                    $('#content-body').html(r.html);
+                    $('#common-modal').modal('show');
+                }else{
+                    toastr.warning("获取数据异常");
+                }
+            }
+        });
+        
+    }
+   
 }
 </script>
 @endsection

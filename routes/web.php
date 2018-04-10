@@ -19,6 +19,8 @@ Route::get('/', function () {
 
 Route::post('/front-login', 'Auth\HomeController@login');
 
+Route::get('/article/home/view', 'ArticleController@articleView');
+
 Route::get('/article/view/{id}', 'ArticleController@view');
 Route::get('/article/home', 'ArticleController@home');
 
