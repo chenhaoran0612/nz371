@@ -5,7 +5,7 @@
                 <div class="user-profile">
                     <div class="dropdown user-pro-body">
                         <div><img src="{{Auth::user()->logo ? Auth::user()->logo : '/images/user_default.png'  }}" alt="user-img" class="img-circle"></div>
-                        <p class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{Auth::user()->name}}</p>
+                        <p class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{Auth::user()->nick_name}}</p>
                         
                     </div>
                 </div>

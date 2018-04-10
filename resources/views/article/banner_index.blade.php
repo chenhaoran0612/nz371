@@ -57,7 +57,7 @@
                             <thead>
                             <tr>
                                 <th class="text-center">编码</th>
-                                <th>文章名称</th>
+                                <th>Banner名称</th>
                                 <th>顺序</th>
                                 <th>图片</th>
                                 <th>文章地址</th>

@@ -40,6 +40,16 @@
                                             </div>
                                         </div>
 
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">昵称 <span class="text-danger">*</span></label>
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control" name="nick_name">
+                                                </div>
+                                            </div>
+                                        </div>
+
+
                                         <div class="clearfix"></div>
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -182,6 +192,7 @@
             var memo = $('#user_form [name=memo]').val();
             var logo = getUploadImage('user-logo');
             var group_id = $('#user_form [name=group_id]').val();
+            var nick_name = $('#user_form [name=nick_name]').val();
 
             $.ajax({
                 type: "POST",
@@ -199,6 +210,7 @@
                     logo : logo,
                     address : address,
                     group_id : group_id,
+                    nick_name : nick_name,
                 },
                 success: function(d) {
                     if(d.result){

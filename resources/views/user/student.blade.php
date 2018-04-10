@@ -5,19 +5,14 @@
     <div class="container-fluid">
         <div class="row bg-title" style="border-shadow:1px 0px 20px rgba(0, 0, 0, 0.08)">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                <h4 class="page-title">供应商管理</h4>
+                <h4 class="page-title">学生管理</h4>
             </div>
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                <!-- <button class="waves-effect waves-light btn-info btn-circle pull-right m-l-20 search"><i class="fa fa-search text-white"></i></button>
-                <a class="btn-info btn-circle pull-right m-l-20 waves-effect waves-light" href="/user/vendor/create"><i class="fa fa-plus text-white"></i></a> -->
                 <div class="float-btn-group">
-                    
                     <div class="btn-list">
-                        <a class="btn-float blue waves-effect waves-light" href="/user/vendor/create"><i class="fa fa-plus"></i></a>
+                        <a class="btn-float blue waves-effect waves-light" href="/user/student/create"><i class="fa fa-plus"></i></a>
                         <a href="#" class="btn-float blue search waves-effect waves-light"><i class="fa fa-search"></i></a>
-                        <!-- <a href="#" class="btn-float blue"><i class="fa fa-paperclip"></i></a>
-                        <a href="#" class="btn-float blue"><i class="fa fa-line-chart"> </i></a>
- -->                 </div>
+                   </div>
                     <button class="btn-float btn-triger pink"><i class="icon-bars"></i></button>
                 </div>
 
@@ -38,29 +33,11 @@
                                         <label >用户名</label>
                                         <input type="text" class="form-control" id="name" name='name'>
                                     </div>
+
                                     <div class="form-group col-sm-3">
-                                        <label>级别</label>
-                                        <div class="col-md-12-select">
-                                            <select class="selectpicker bs-select-hidden" data-style="btn-info btn-outline" id="level" name="level">
-                                                <option value="">请选择级别</option>
-                                                @foreach (Auth::user()->levelMap as $key  => $level)
-                                                    <option value="{{$key}}">{{$level}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                                        <label >昵称</label>
+                                        <input type="text" class="form-control" id="nick_name" name='nick_name'>
                                     </div>
-                                    <div class="form-group col-sm-3">
-                                        <label>信用等级</label>
-                                        <div class="col-md-12-select">
-                                            <select class="selectpicker bs-select-hidden" data-style="btn-info btn-outline" id="credit" name="credit">
-                                                <option value="">请选择信用等级</option>
-                                                @foreach (Auth::user()->creditMap as $key  => $level)
-                                                    <option value="{{$key}}">{{$level}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="clearfix"></div>
                                     <div class="form-group col-sm-3">
                                         <label for="selectpicker">状态</label>
                                         <div class="col-md-12-select">
@@ -92,10 +69,7 @@
                            <tr>
                                <th class="text-center">编码</th>
                                <th>用户名 </th>
-                               <th>EMAIL</th>
-                               <th>收款账户</th>
-                               <th>级别</th>
-                               <th>信用等级</th>
+                               <th>昵称</th>
                                <th>状态</th>
                                <th>操作</th>
                            </tr>
@@ -105,13 +79,11 @@
                            <tr>
                                <td class="text-center">{{$user->user_code}}</td>
                                <td>{{$user->name}}</td>
-                               <td>{{$user->email}}</td>
-                               <td>{{$user->getPaymentMethod->name}}</td>
-                               <td>{{$user->levelMap[$user->level]}}</td>
-                               <td>{{$user->creditMap[$user->credit]}}</td>
+                               <td>{{$user->nick_name}}</td>
                                <td>{{$user->status? "开启" : "关闭"}}</td>
                                <td>
-                                   <a type="button" href="/user/vendor/edit?id={{Hashid::encode($user->id)}}" class="btn btn-info btn-outline btn-circle btn-sm m-r-5"><i class="ti-pencil-alt"></i></a>
+                                   <a type="button" href="/user/student/edit?id={{$user->id}}" class="btn btn-info btn-outline btn-circle btn-sm m-r-5"><i class="ti-pencil-alt"></i></a>
+                                   <button type="button" class="btn btn-danger btn-outline btn-circle btn-sm m-r-5 delete" data-id="{{$user->id}}"><i class="ti-trash"></i></button>
                                </td>
                            </tr>
                            @endforeach
@@ -138,6 +110,42 @@
     });
     $(".search-close").click(function(){
         $(".left-sidebar").removeClass('shw-left-rside');
+    });
+
+    $('.delete').click(function () {
+
+        var id = $(this).data('id')
+
+        swal({
+          dangerMode: true,
+          title: "确定要删除吗?",
+          type: "warning",
+          icon: "warning",
+          buttons: ["取消","确认"],
+        })
+        .then(willDelete => {
+          if (willDelete) {
+
+            $.ajax({
+                type: "post",
+                url: "/user/student/delete",
+                dataType: "json",
+                data :{
+                    id : id,
+                },
+                success: function(r) {
+                    if(r.result){
+                        swal(r.message, "", "success");
+                        window.location.reload();
+                    }else{
+                        swal(r.message, "", "error");
+                    }
+                }
+            });
+          }
+        });
+
+
     });
 
 </script>

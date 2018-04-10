@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('extend_css')
-    
+    <link href="/libs/custom-select/custom-select.css" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@
 
         <div class="row bg-title">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                <h4 class="page-title">编辑经销商</h4>
+                <h4 class="page-title">新增学生</h4>
             </div>
         </div>
 
@@ -24,26 +24,27 @@
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label col-md-3">Email <span class="text-danger">*</span></label>
+                                                <label class="control-label col-md-3">用户名 <span class="text-danger">*</span></label>
                                                 <div class="col-md-9">
-                                                    <input type="text" class="form-control" name="email" value="{{$user->email}}">
+                                                    <input type="text" class="form-control" name="name">
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label col-md-3">用户名 <span class="text-danger">*</span></label>
+                                                <label class="control-label col-md-3">昵称 <span class="text-danger">*</span></label>
                                                 <div class="col-md-9">
-                                                    <input type="text" class="form-control" name="name" value="{{$user->name}}">
+                                                    <input type="text" class="form-control" name="nick_name">
                                                 </div>
                                             </div>
                                         </div>
 
+
                                         <div class="clearfix"></div>
                                         <div class="col-md-6">
-                                            <div class="form-group {{-- has-error --}}">
-                                                <label class="control-label col-md-3">密码</label>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">密码 <span class="text-danger">*</span></label>
                                                 <div class="col-md-9">
                                                     <input type="password" name="password" class="form-control">
                                                 </div>
@@ -52,7 +53,7 @@
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label col-md-3">确认密码</label>
+                                                <label class="control-label col-md-3">确认密码 <span class="text-danger">*</span></label>
                                                 <div class="col-md-9">
                                                     <input type="password" name="comfirm_password" class="form-control">
                                                 </div>
@@ -63,71 +64,20 @@
                                             <div class="form-group">
                                                 <label class="control-label col-md-3">状态 <span class="text-danger">*</span></label>
                                                 <div class="col-md-9">
-                                                    <input type="checkbox" {{$user->status? 'checked': ''}} class="js-switch" data-color="#41b3f9" name="status" />
+                                                    <input type="checkbox" checked class="js-switch" data-color="#41b3f9" name="status" />
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="clearfix"></div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3">收款账户  <span class="text-danger">*</span></label>
-                                                <div class="col-md-9">
-                                                    <select class="form-control" name="payment_method_id" disabled>
-                                                    @foreach ($paymentmethods as $paymentmethod)
-                                                        <option value="{{$paymentmethod->id}}" {{$user->payment_method_id==$paymentmethod->id? 'selected' : ''}}>{{$paymentmethod->name}}</option>
-                                                    @endforeach
-
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3">公司资质  <span class="text-danger">*</span></label>
-                                                <div class="col-md-9">
-                                                    <select class="form-control" name="qualification">
-                                                    @foreach ($qualificationMap as $key  => $qualification)
-                                                        <option value="{{$key}}" {{$key==$user->qualification? 'selected' : ''}}>{{$qualification}}</option>
-                                                    @endforeach
-
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3">等级</label>
-                                                <div class="col-md-9">
-                                                    <select class="form-control" name="level">
-                                                        @foreach ($user->levelMap as $key  => $level)
-                                                            <option value="{{$key}}" {{$key==$user->level? 'selected' : ''}}>{{$level}}</option>
-                                                        @endforeach
-
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3">信用等级</label>
-                                                <div class="col-md-9">
-                                                    <select class="form-control" name="credit">
-                                                        @foreach ($user->creditMap as $key  => $credit)
-                                                            <option value="{{$key}}" {{$key==$user->credit? 'selected' : ''}}>{{$credit}}</option>
-                                                        @endforeach
-
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        
+                                        
+                                     
                                     
                                     <div class="clearfix"></div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label col-md-3">联系人</label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" name="contacts" value="{{$user->contacts}}">
+                                                <input type="text" class="form-control" name="contacts">
                                             </div>
                                         </div>
                                     </div>
@@ -136,7 +86,7 @@
                                         <div class="form-group">
                                             <label class="control-label col-md-3">电话</label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" name="phone" value="{{$user->phone}}">
+                                                <input type="text" class="form-control" name="phone">
                                             </div>
                                         </div>
                                     </div>
@@ -144,10 +94,11 @@
                                         <div class="form-group">
                                             <label class="control-label col-md-3">地址</label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" name="address" value="{{$user->address}}">
+                                                <input type="text" class="form-control" name="address">
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="clearfix"></div>
                                     <div class="col-md-9">
                                         <div class="form-group">
                                             <label class="control-label col-md-2">LOGO</label>
@@ -161,7 +112,7 @@
                                         <div class="form-group">
                                             <label class="control-label col-md-2">备注</label>
                                             <div class="col-md-10">
-                                                <textarea class="form-control" name="memo" rows="5">{{$user->memo}}</textarea> 
+                                                <textarea class="form-control" name="memo" rows="5"></textarea> 
                                             </div>
                                         </div>
                                     </div>
@@ -172,9 +123,8 @@
                                         <div class="col-md-12">
                                             <div class="row">
                                                 <div class="col-md-4 col-md-offset-10">
-                                                    <input type="hidden" name="id" value="{{Hashid::encode($user->id)}}">
                                                     <button type="submit" class="btn btn-info user_submit">提交</button>
-                                                    <a type="button" class="btn btn-default" href="/user/vendor">返回</a>
+                                                    <button type="button" class="btn btn-default"  onclick="window.history.go(-1)">返回</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -192,60 +142,57 @@
   @endsection
   
 @section('extend_js')
-    <script src="/libs/switchery/dist/switchery.js"></script>
+    <script src="/libs/switchery/dist/switchery.min.js"></script>
+    <script type="text/javascript" src="/libs/custom-select/custom-select.min.js"></script>
     <script src="/js/uploadImage.js"></script>
     <script type="text/javascript">
         var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
         $('.js-switch').each(function() {
             new Switchery($(this)[0], $(this).data());
         });
+
+        $(".select2").select2();
+
         //初始化图片
-        var goodsImageUrl = '/user/logo?id=' + "{{Hashid::encode($user->id)}}";
+        var goodsImageUrl = '/user/logo';
         var parentClassName = 'user-logo';
         initUploadImage(parentClassName, goodsImageUrl, 180, 180);
 
         $('.user_submit').click(function(){
-            var email = $('#user_form [name=email]').val();
             var name = $('#user_form [name=name]').val();
             var password = $('#user_form [name=password]').val();
             var comfirm_password = $('#user_form [name=comfirm_password]').val();
             var status = document.querySelector('#user_form [name=status]').checked;
-            var level = $('#user_form [name=level]').val();
-            var credit = $('#user_form [name=credit]').val();
+            
             var contacts = $('#user_form [name=contacts]').val();
             var phone = $('#user_form [name=phone]').val();
             var address = $('#user_form [name=address]').val();
             var memo = $('#user_form [name=memo]').val();
             var logo = getUploadImage('user-logo');
-            var id = $('#user_form [name=id]').val();
-            var qualification = $('#user_form [name=qualification]').val();
-            // var payment_method_id = $('#user_form [name=payment_method_id]').val();
+            var group_id = $('#user_form [name=group_id]').val();
+            var nick_name = $('#user_form [name=nick_name]').val();
 
             $.ajax({
                 type: "POST",
-                url: "/user/vendor/edit",
+                url: "/user/student/create",
                 dataType: "json",
                 data : {
-                    id : id,
-                    email : email,
                     name : name,
                     password :password,
                     comfirm_password : comfirm_password,
                     status : status,
-                    level : level,
-                    credit : credit,
                     contacts : contacts,
                     phone : phone,
                     memo : memo,
                     logo : logo,
                     address : address,
-                    qualification : qualification,
-                    // payment_method_id : payment_method_id,
+                    group_id : group_id,
+                    nick_name : nick_name,
                 },
                 success: function(d) {
                     if(d.result){
                         toastr.success(d.message);
-                        window.location.reload();
+                        window.location.href = '/user/student'
                     }else{
                         $('.help-block').remove();
                         $.each(d.message, function(key,value){

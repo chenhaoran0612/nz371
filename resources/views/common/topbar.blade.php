@@ -16,7 +16,7 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#">
                             <img src="{{Auth::user()->logo ? Auth::user()->logo : '/images/user_default.png'}}" alt="user-img" width="36" class="img-circle">
-                            <b class="hidden-xs">{{Auth::user()->name}}</b>
+                            <b class="hidden-xs">{{Auth::user()->nick_name}}</b>
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-user animated flipInY">
@@ -26,8 +26,7 @@
                                         <img src="{{Auth::user()->logo ? Auth::user()->logo : '/images/user_default.png'}}" alt="user">
                                     </div>
                                     <div class="u-text p-l-0">
-                                        <h4>{{Auth::user()->name}}</h4>
-                                        
+                                        <h4>{{Auth::user()->nick_name}}</h4>
                                     </div>
                                 </div>
                             </li>

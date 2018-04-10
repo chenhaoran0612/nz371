@@ -17,6 +17,7 @@ return [
             '用户管理' => [
                 'user_subaccount' => '子账号管理',
                 'user_usergroup' => '用户组管理',
+                'user_student' => '学生管理',
             ],
             '文章管理' => [
                 'article_category' => '文章分类管理',
@@ -24,11 +25,20 @@ return [
                 'article_bannerindex' => 'Banner管理'
             ]
         ],
+
+        'student' => [
+            '测试题目' => [
+                
+            ],
+            
+        ],
+
     ],
 
     //栏目关联权限
     'relation_permission' => [
         'user_subaccount' => 'user_subaccountcreate,user_subaccountedit',
+        'user_student' => 'user_studentcreate,user_studentedit',
         'article_category' => 'article_categorycreate,article_categoryedit',
         'article_index' => 'article_create,article_edit',
         'article_bannerindex' => 'article_bannercreate'

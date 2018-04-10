@@ -74,7 +74,7 @@
                                 <td>{{$user->email}}</td>                                <td>{{$user->status? "开启" : "关闭"}}</td>
                                 <td>
                                     <a type="button" href="/user/subaccount/edit?id={{Hashid::encode($user->id)}}" class="btn btn-info btn-outline btn-circle btn-sm m-r-5"><i class="ti-pencil-alt"></i></a>
-                                    <button type="button" class="btn btn-info btn-outline btn-circle btn-sm m-r-5 delete" data-id="{{Hashid::encode($user->id)}}"><i class="ti-trash"></i></button>
+                                    <button type="button" class="btn btn-danger btn-outline btn-circle btn-sm m-r-5 delete" data-id="{{Hashid::encode($user->id)}}"><i class="ti-trash"></i></button>
                                 </td>
                             </tr>
                             @endforeach

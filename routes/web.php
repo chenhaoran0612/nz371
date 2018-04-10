@@ -44,6 +44,17 @@ Route::group(['middleware' => ['web', 'auth', 'permission']], function () {
     Route::post('/user/subaccount/edit', 'UserController@subaccountEditSave');
     Route::post('/user/subaccount/delete', 'UserController@subaccountDelete');
 
+    //学生管理
+    Route::get('/user/student', 'UserController@student');
+
+    Route::get('/user/student/create', 'UserController@studentCreate');
+    Route::post('/user/student/create', 'UserController@studentCreatesave');
+    Route::post('/user/student/delete', 'UserController@studentDelete');
+    
+    Route::get('/user/student/edit', 'UserController@studentEdit');
+    Route::post('/user/student/edit', 'UserController@studentEditSave');
+    
+
     //用户组管理
     Route::get('/user/group', 'UserController@userGroup');
     Route::post('/user/group/create', 'UserController@userGroupCreateSave');

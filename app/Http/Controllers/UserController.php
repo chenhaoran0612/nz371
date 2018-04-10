@@ -21,7 +21,7 @@ class UserController extends Controller
     const PASSWORD_BETWEEN = '密码必须是6~20位之间';
     const OLD_PASSWORD_ERROR = '原密码错误';
     const EMAIL_ERROR = 'EMAIL格式错误';
-    const EMAIL_EXIST = 'Email已存在';
+    const NAME_EXIST = '用户名已存在';
     const OPERATE_SUCCESS = '操作成功';
     const OPERATE_FAIL = '操作失败';
     const AUTH_LOWER = '未找到对应信息或权限不足';
@@ -58,6 +58,26 @@ class UserController extends Controller
             }
         }
     }
+
+    /**
+     * [student description] 学生管理入口
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
+    function student(Request $request)
+    {
+        $user =Auth::user();
+        $searchs = $request->only('nick_name', 'status','name');
+        $conditions = [
+            'nick_name' => 'like',
+            'status' => '=',
+            'name' => 'like'
+        ];
+        $data['users'] = User::user($user)->search($searchs, $conditions)->student()->orderBy('id','desc')->paginate(20);
+        $data['users']->appends(array_filter($request->all()));
+        return view('user.student', $data);
+    }
+
 
     //Logo获取
     public function getUserLogo(Request $request)
@@ -163,11 +183,9 @@ class UserController extends Controller
     public function userValidator($data){
         $validate = 
         [
-            'name' => 'required|max:255',
+            'name' => 'required|max:255|unique:users,name,'.(isset($data['id']) ? $data['id'] : 'null').',id',
             'password' => 'sometimes|same:comfirm_password|between:6,20',
-            'email' => 'sometimes|required|email|max:255|unique:users,email,'.(isset($data['id']) ? $data['id'] : 'null').',id',
-            'qualification' => 'sometimes|required|max:11',
-            'payment_method_id' => 'sometimes|required|max:11',
+            'nick_name' => 'required|max:255',
 
         ];
         $message = 
@@ -175,8 +193,7 @@ class UserController extends Controller
             'required' => self::REQUIRED,
             'same' => self::PASSWORD_SAME,
             'between' => self::PASSWORD_BETWEEN,
-            'email' => self::EMAIL_ERROR,
-            'unique' => self::EMAIL_EXIST,
+            'unique' => self::NAME_EXIST,
             'max' => self::CHAR_LONG,
         ];
         $validator = Validator::make($data, $validate, $message);
@@ -185,6 +202,118 @@ class UserController extends Controller
         }
         return true;
     }
+
+    /**
+     * [distributorCreate description]学生新增
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
+    function studentCreate(Request $request)
+    {
+        $user =Auth::user();
+        $data= [];
+        return view('user.student_create', $data);
+    }
+
+    /**
+     * [studentCreateSave description] 学生新增保存
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
+    public function studentCreateSave(Request $request)
+    {
+        $user = Auth::user();
+        $data = $request->all();
+        $message = $this->userValidator($data);
+        if (is_array($message)) {
+            return ['result' => false, 'message'=>$message];
+        }
+        
+        $data['status'] = $data['status']=='true'? 1: 0;
+        $data['role'] = 'student';
+        $data['parent_id'] = $user->getParentId();
+        $data['logo'] = explode(',',$data['logo'])[0];
+        $data['password'] = bcrypt($data['password']);
+       
+        
+        $student = User::create($data);
+        $student->setUserCode();
+
+        $request->request->remove('password');
+        $request->request->remove('comfirm_password');
+        return ['result' => true, 'message' => self::OPERATE_SUCCESS];
+    }
+
+    /**
+     * [studentDelete description] 学生删除操作
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
+    public function studentDelete(Request $request)
+    {
+        $id = $request->get('id');
+        $user = Auth::user();
+        if (!$user = User::whereId($id)->student()->first()) {
+            return ['result'=>false ,'message' => self::AUTH_LOWER];
+        }
+        $user->delete();
+        if ($user->trashed()) {
+            return response()->json(array('result' => true, 'message' => self::DELETE_SUCCESS));
+        } else {
+            return response()->json(array('result' => false, 'message' => self::DELETE_FAIL));
+        }
+    }
+
+    /**
+     * [studentEdit description]学生编辑
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
+    public function studentEdit(Request $request)
+    {
+        $user = Auth::user();
+        $id = $request->id;
+        if ( !$id || !$userEdit = User::user($user)->whereId($id)->student()->first()  ) {
+            return back();
+        }
+        $data['user'] = $userEdit;
+        return view('user.student_edit', $data);
+    }
+
+    /**
+     * [studentEditSave description] 学生编辑保存
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
+    public function studentEditSave(Request $request)
+    {
+        $data = $request->all();
+        $data['id'] = Hashid::decode($data['id']);
+        $data = array_filter($data);
+        $message = $this->userValidator($data);
+        if (is_array($message)) {
+            return ['result' => false, 'message'=>$message];
+        }
+        $phoneNumber = $request->get('phone');
+
+        //验证用户权限
+        $user = Auth::user();
+        $data['status'] = $data['status']=='true'? 1: 0;
+        if (isset($data['password'])) {
+            $data['password'] = bcrypt($data['password']);
+            unset($data['comfirm_password']);
+        }
+        
+        $student =  User::whereId($data['id'])->user($user)->student()->first();
+        $effectNumber = $student->update($data);
+
+        if ($effectNumber) {
+            return ['result' => true, 'message' => self::OPERATE_SUCCESS];
+        } else {
+            return ['result' => false, 'message' => self::OPERATE_FAIL];
+        }
+    }
+
 
     /**
      * 子账户编辑保存

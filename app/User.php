@@ -78,6 +78,11 @@ class User extends Authenticatable
         return $query->where('parent_id', $user->getParentId());
     }
 
+    public function scopeStudent($query)
+    {
+        return $query->where('role', 'student');
+    }
+
     public function setUserCode()
     {
         $this->user_code = 'U'.$this->id;

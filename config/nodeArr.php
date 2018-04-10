@@ -70,6 +70,14 @@ return [
             'parent_node' => 'user',
             'index' => 20
         ],
+
+        'user_student' => [
+            'url' => '/user/student',
+            'name' => '学生管理',
+            'parent_node' => 'user',
+            'index' => 30
+        ],
+
         
 
 
