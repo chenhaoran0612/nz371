@@ -62,9 +62,6 @@ return [
             'index' => 30
         ],
 
-
-    
-        
         'user_subaccount' => [
             'url' => '/user/subaccount',
             'name' => '子账号管理',
@@ -98,6 +95,14 @@ return [
             'parent_node' => 'test',
             'index' => 20
         ],
+
+        'test_holandadmin' => [
+            'url' => '/test/holand/admin',
+            'name' => '霍兰德测试管理',
+            'parent_node' => 'test',
+            'index' => 30
+        ],
+
 
         
 

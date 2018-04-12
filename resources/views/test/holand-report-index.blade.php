@@ -30,7 +30,9 @@
                                 <td>{{$holandTest->created_at}}</td>
                                 <td>{{$holandTest->statusValue}}</td>
                                 <td>
-                                    <a type="button" href="/test/holand/report/detail?id={{$holandTest->id}}" class="btn btn-info btn-outline btn-circle btn-sm m-r-5"><i class="ti-eye"></i></a>
+                                    @if($holandTest->status == 'success')
+                                        <a type="button" href="/test/holand/report/detail?id={{$holandTest->id}}" class="btn btn-info btn-outline btn-circle btn-sm m-r-5"><i class="ti-eye"></i></a>
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach

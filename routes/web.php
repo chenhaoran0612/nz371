@@ -60,6 +60,11 @@ Route::group(['middleware' => ['web', 'auth', 'permission']], function () {
     Route::post('/test/holand/submit', 'TestController@holandSubmit');
     Route::get('/test/holand/report', 'TestController@holandReport');
     Route::get('/test/holand/report/detail', 'TestController@holandReportDetail');
+
+    //教师账号管理
+    Route::get('/test/holand/admin', 'TestController@holandAdmin');
+    Route::get('/test/holand/admin/detail', 'TestController@holandAdminDetail');
+    
     
 
     //用户组管理

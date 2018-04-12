@@ -23,7 +23,10 @@ return [
                 'article_category' => '文章分类管理',
                 'article_index' => '文章管理',
                 'article_bannerindex' => 'Banner管理'
-            ]
+            ],
+            '测试管理' => [
+                'test_holandadmin' => '霍兰德测试管理',
+            ],
         ],
 
         'student' => [
@@ -43,7 +46,8 @@ return [
         'article_category' => 'article_categorycreate,article_categoryedit',
         'article_index' => 'article_create,article_edit',
         'article_bannerindex' => 'article_bannercreate',
-        'test_holandreport' => 'test_holandreportdetail'
+        'test_holandreport' => 'test_holandreportdetail',
+        'test_holandadmin' => 'test_holandadmindetail'
     ],
     //公共权限
     'public_permission' => [
