@@ -55,6 +55,7 @@ class TestController extends Controller
     		abort(403);
     	}
     	$data['holandTest'] = $holandTest;
+    	$data['resultMaps'] = HolandTest::JOBMAP;
     	return view('test.holand-report-detail' , $data);
 
     }

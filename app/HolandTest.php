@@ -102,7 +102,7 @@ class HolandTest extends Model
 
     public function getJobDataAttribute()
     {
-    	return isset(self::JOBMAP[$this->type]) ? self::JOBMAP[$this->type] : '未知职业推荐';
+    	return isset(self::JOBMAP[$this->type]) ? self::JOBMAP[$this->type] : '未知职业推荐(请下翻查看附录I，找出类似推荐。例：IEA与EIA相近)';
     }
 
     public function getTestNameAttribute()

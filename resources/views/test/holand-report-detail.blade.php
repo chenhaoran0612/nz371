@@ -17,7 +17,7 @@
                 <div class="white-box">
                     <h3 class="box-title">图形分析</h3>
                     <div>
-                        <canvas id="chart" height="250" width="423" style="width: 423px; height: 250px;"></canvas>
+                        <canvas id="chart" height="300" width="423" style="width: 423px; height: 300px;"></canvas>
                     </div>
                 </div>
             </div>
@@ -104,6 +104,33 @@
                 </div>
             </div>
             
+
+            <div class="col-lg-12">
+                <div class="panel">
+                    <h1 style="text-align: center;font-weight: bold;padding: 20px">附录 I</h1>
+                    <div class="table-responsive">
+                        
+                        <table class="table" style="font-size: 14px">
+                            <thead>
+                            <tr>
+                                <th>测试结果</th>
+                                <th style="width: 800px">适用职业</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($resultMaps as $key => $value)
+                                <tr>
+                                    <td>{{$key}}</td>
+                                    <td style="width: 800px">{{$value}}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
 
         </div>
     </div>
