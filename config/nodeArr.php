@@ -88,7 +88,7 @@ return [
 
         'test_holandindex' => [
             'url' => '/test/holand/index',
-            'name' => '霍兰德职业倾向测试',
+            'name' => '霍兰德兴趣测试',
             'parent_node' => 'test',
             'index' => 10
         ],
