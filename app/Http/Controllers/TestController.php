@@ -22,7 +22,7 @@ class TestController extends Controller
     public function holandIndex(Request $request)
     {
     	$user = Auth::user();
-    	$data['questions'] = HolandQuestion::get();
+    	$data['questions'] = HolandQuestion::inRandomOrder()->get();
     	return view('test.holand' , $data);
     }
 
