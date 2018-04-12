@@ -54,6 +54,13 @@ Route::group(['middleware' => ['web', 'auth', 'permission']], function () {
     Route::get('/user/student/edit', 'UserController@studentEdit');
     Route::post('/user/student/edit', 'UserController@studentEditSave');
     
+    
+    //学生测试管理
+    Route::get('/test/holand/index', 'TestController@holandIndex');
+    Route::post('/test/holand/submit', 'TestController@holandSubmit');
+    Route::get('/test/holand/report', 'TestController@holandReport');
+    Route::get('/test/holand/report/detail', 'TestController@holandReportDetail');
+    
 
     //用户组管理
     Route::get('/user/group', 'UserController@userGroup');

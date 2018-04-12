@@ -27,8 +27,9 @@ return [
         ],
 
         'student' => [
-            '测试题目' => [
-                
+            '职业/心理测试' => [
+                'test_holandindex' => '霍兰德职业倾向测试',
+                'test_holandreport' => '霍兰德测试报告'
             ],
             
         ],
@@ -41,7 +42,8 @@ return [
         'user_student' => 'user_studentcreate,user_studentedit',
         'article_category' => 'article_categorycreate,article_categoryedit',
         'article_index' => 'article_create,article_edit',
-        'article_bannerindex' => 'article_bannercreate'
+        'article_bannerindex' => 'article_bannercreate',
+        'test_holandreport' => 'test_holandreportdetail'
     ],
     //公共权限
     'public_permission' => [

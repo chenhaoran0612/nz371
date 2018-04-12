@@ -1,18 +1,15 @@
 <nav class="navbar navbar-default navbar-static-top m-b-0">
             <div class="navbar-header">
-                <div class="top-left-part">
+                <div class="top-left-part" style="text-align: center;">
                     <!-- Logo -->
-                    <a class="logo" href="#"> 
+                    <a class="logo" href="#" style="padding: 0"> 
                       <span class="hidden-xs">
-                        <img src="/images/admin-text-dark.png" alt="home" class="light-logo">
+                        <img src="/images/admin-text-dark.png" width="100" alt="home" class="light-logo">
                      </span> </a>
                 </div>
                 <!-- /Logo -->
                 <ul class="nav navbar-top-links navbar-right pull-right active">
-                    <li class="in">
-                        <form role="search" class="app-search hidden-sm hidden-xs m-r-10">
-                            <input type="text" placeholder="搜索" class="form-control"> <a href="" class="active"><i class="fa fa-search"></i></a> </form>
-                    </li>
+                    
                     <li class="dropdown">
                         <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#">
                             <img src="{{Auth::user()->logo ? Auth::user()->logo : '/images/user_default.png'}}" alt="user-img" width="36" class="img-circle">

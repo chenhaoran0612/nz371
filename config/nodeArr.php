@@ -22,6 +22,14 @@ return [
     		'index' => 30
     	],
 
+        'test' => [
+            'url' => '#',
+            'i_class' => 'fa ti-slice fa-fw',
+            'name' => '职业/心理测试',
+            'index' => 40
+        ],
+
+
     ],
 
     'subnodeArr' => [
@@ -77,6 +85,21 @@ return [
             'parent_node' => 'user',
             'index' => 30
         ],
+
+        'test_holandindex' => [
+            'url' => '/test/holand/index',
+            'name' => '霍兰德职业倾向测试',
+            'parent_node' => 'test',
+            'index' => 10
+        ],
+        'test_holandreport' => [
+            'url' => '/test/holand/report',
+            'name' => '霍兰德测试报告',
+            'parent_node' => 'test',
+            'index' => 20
+        ],
+
+        
 
         
 
