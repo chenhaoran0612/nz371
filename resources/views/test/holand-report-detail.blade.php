@@ -27,7 +27,7 @@
                 <div class="panel">
                     <div class="table-responsive">
                         <h3>测试报告解读</h3>
-                        <p style="padding: 10px"> 测试结果 ： {{$holandTest->type}}</p>
+                        <p style="padding: 10px">测试结果 ： {{$holandTest->type}}</p>
                         <p style="padding: 10px">推荐职业 ： {{$holandTest->job_data}}</p>
                     </div>
                 </div>
