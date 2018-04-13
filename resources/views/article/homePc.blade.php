@@ -1,6 +1,14 @@
 @extends('layouts.outside-pc')
 @section('content')
-<body data-default-background-img="/imgs/bg5.jpg" data-overlay="true" data-overlay-opacity="0.1"><div class="vegas-overlay" style="margin: 0px; padding: 0px; position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; background-size: contain; background-image: url(&quot;/imgs/background-image-overlay-full.png&quot;);opacity: .1"></div><img class="vegas-background" src="/imgs/bg5.jpg" style="position: fixed; left: 0px; top: 0px; width: 2200px; height: 1200px; bottom: auto; right: auto;">   
+<body data-default-background-img="/imgs/bg5.jpg" data-overlay="true" data-overlay-opacity="0.1"><div class="vegas-overlay" style="margin: 0px; padding: 0px; position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; background-size: contain; background-image: url(&quot;/imgs/background-image-overlay-full.png&quot;);opacity: .1">
+  <style type="text/css">
+    .modal .modal-content .modal-body{
+      background-color: white;
+      opacity: 1;
+      color: black;
+    }
+  </style>
+</div><img class="vegas-background" src="/imgs/bg5.jpg" style="position: fixed; left: 0px; top: 0px; width: 2200px; height: 1200px; bottom: auto; right: auto;">   
     <!-- Outer Container -->
     <div id="outer-container">
       <!-- Left Sidebar -->
@@ -19,7 +27,7 @@
       </section>
 
       <section id="main-content" class="clearfix">
-        <article id="intro" class="section-wrapper clearfix active" data-custom-background-img="/imgs/bg5.jpg">
+        <article id="intro" class="section-wrapper clearfix active" data-custom-background-img="/imgs/bg6.jpg">
           <div class="content-wrapper clearfix wow fadeInDown animated" data-wow-delay="0.3s" style="position: absolute; visibility: visible; animation-delay: 0.3s; animation-name: fadeInDown;">
             <div class="col-sm-10 col-md-9 pull-right">
                 <section class="feature-text">
@@ -52,7 +60,7 @@
         </article>
         @endforeach
 
-        <article id="about" class="section-wrapper clearfix active" data-custom-background-img="/imgs/bg5.jpg">
+        <article id="about" class="section-wrapper clearfix active" data-custom-background-img="/imgs/bg1.jpg">
           <div class="content-wrapper clearfix wow fadeInDown animated" data-wow-delay="0.3s" style="position: absolute; visibility: visible; animation-delay: 0.3s; animation-name: fadeInDown;">
             <div class="col-sm-10 col-md-9 pull-right">
                 <section class="feature-text">

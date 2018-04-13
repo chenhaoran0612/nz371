@@ -17,7 +17,7 @@
                 <div class="white-box">
                     <h3 class="box-title">图形分析</h3>
                     <div>
-                        <canvas id="chart" height="300" width="423" style="width: 423px; height: 300px;"></canvas>
+                        <canvas id="chart" height="300" width="420" style="width: 423px; height: 320px;"></canvas>
                     </div>
                 </div>
             </div>
@@ -142,7 +142,7 @@
 
     var ctx = document.getElementById("chart").getContext("2d");
     var data = {
-        labels: ["现实型(R)", "常规型(C)", "企业型(E)", "社会型(S)", "艺术型(A)", "探索型(I)"],
+        labels: ["现实型(R)","探索型(I)", "艺术型(A)","社会型(S)", "企业型(E)", "常规型(C)"],
         datasets: [
             {
                 label: "My First dataset",
@@ -162,7 +162,7 @@
                 pointStrokeColor: "#fff",
                 pointHighlightFill: "#fff",
                 pointHighlightStroke: "rgba(255,118,118,1)",
-                data: [{{$holandTest->detail->R}}, {{$holandTest->detail->C}}, {{$holandTest->detail->E}}, {{$holandTest->detail->S}}, {{$holandTest->detail->A}}, {{$holandTest->detail->I}}]
+                data: [{{$holandTest->detail->R}}, {{$holandTest->detail->I}}, {{$holandTest->detail->A}}, {{$holandTest->detail->S}}, {{$holandTest->detail->E}}, {{$holandTest->detail->C}}]
             }
         ]
     };
