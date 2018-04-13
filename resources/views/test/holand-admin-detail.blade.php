@@ -11,8 +11,6 @@
             </div>
         </div>
         <div class="row">
-            
-
             <div class="col-lg-6">
                 <div class="white-box">
                     <h3 class="box-title">图形分析</h3>
@@ -21,8 +19,6 @@
                     </div>
                 </div>
             </div>
-
-
             <div class="col-lg-6">
                 <div class="panel">
                     <div class="table-responsive">
