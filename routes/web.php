@@ -28,7 +28,7 @@ Auth::routes();
 
 //未登录重定向与登出重定向
 Route::get('/login', function () {
-    return redirect('/');
+    return redirect('/article/home');
 });
 
 Route::post('login', [ 'as' => 'login', 'uses' => 'HomeController@index']);
