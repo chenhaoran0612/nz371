@@ -24,6 +24,7 @@
         -webkit-transition: all .4s linear;
         transition: all .4s linear;
         cursor: pointer;
+        border-radius: 20px;
     }
     .image-container:hover{
        box-shadow: 5px 5px 3px black;
