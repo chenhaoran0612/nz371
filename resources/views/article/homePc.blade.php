@@ -28,6 +28,7 @@
     }
     .image-container:hover{
        box-shadow: 5px 5px 3px black;
+       border-radius: 20px;
     }
     
     .el-element-overlay:hover{
