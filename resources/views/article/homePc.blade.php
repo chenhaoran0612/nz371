@@ -81,7 +81,7 @@
                             <img data-img-src="{{$one['image'] ? $one['image'] : '/images/no_pic.jpg'}}" class="item-thumbnail el-element-overlay" src="{{$one['image'] ? $one['image'] : '/images/no_pic.jpg'}}" style="width: 100%;height: 200px;">
                           </div>
                           <div class="caption">
-                            <p style="text-align: left;">{{$one['title']}}</p>
+                            <p style="text-align: center;">{{$one['title']}}</p>
                           </div>
                       </article>
                     @endforeach
