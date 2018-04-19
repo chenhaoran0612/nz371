@@ -135,7 +135,7 @@
       </section>
       <section id="footer">
         <div id="go-to-top" onclick="scroll_to_top();" class=""><span class="icon glyphicon glyphicon-chevron-up"></span></div>
-        <div class="footer-text-line">© 2018 ChenHaoRan | Tec</div>
+        <div class="footer-text-line">© 2018 ChenHaoRan&ZM | Tec</div>
       </section> 
 
     </div>
