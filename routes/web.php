@@ -61,11 +61,24 @@ Route::group(['middleware' => ['web', 'auth', 'permission']], function () {
     Route::get('/test/holand/report', 'TestController@holandReport');
     Route::get('/test/holand/report/detail', 'TestController@holandReportDetail');
 
+    //IMTI测试
+    Route::get('/test/mbti/index', 'TestController@mbtiIndex');
+
+    Route::post('/test/mbti/submit', 'TestController@mbtiSubmit');
+    Route::get('/test/mbti/report', 'TestController@mbtiReport');
+
+    Route::get('/test/mbti/report/detail', 'TestController@mbtiReportDetail');
+
+    
+
     //教师账号管理
     Route::get('/test/holand/admin', 'TestController@holandAdmin');
     Route::get('/test/holand/admin/detail', 'TestController@holandAdminDetail');
     
-    
+
+    Route::get('/test/mbti/admin', 'TestController@mbtiAdmin');
+    Route::get('/test/mbti/admin/detail', 'TestController@mbtiAdminDetail');
+
 
     //用户组管理
     Route::get('/user/group', 'UserController@userGroup');

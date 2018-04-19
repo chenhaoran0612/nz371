@@ -103,12 +103,25 @@ return [
             'index' => 30
         ],
 
+        'test_mbtiindex' => [
+            'url' => '/test/mbti/index',
+            'name' => 'MBTI测试',
+            'parent_node' => 'test',
+            'index' => 40
+        ],
+        'test_mbtireport' => [
+            'url' => '/test/mbti/report',
+            'name' => 'MBTI测试报告',
+            'parent_node' => 'test',
+            'index' => 50
+        ],
 
-        
-
-        
-
-
+        'test_mbtiadmin' => [
+            'url' => '/test/mbti/admin',
+            'name' => 'MBTI测试报告管理',
+            'parent_node' => 'test',
+            'index' => 60
+        ],
 
     ]
 

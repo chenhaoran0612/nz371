@@ -26,13 +26,16 @@ return [
             ],
             '测试管理' => [
                 'test_holandadmin' => '霍兰德测试管理',
+                'test_mbtiadmin' => 'MBTI测试报告管理'
             ],
         ],
 
         'student' => [
             '职业/心理测试' => [
                 'test_holandindex' => '霍兰德职业倾向测试',
-                'test_holandreport' => '霍兰德测试报告'
+                'test_holandreport' => '霍兰德测试报告',
+                'test_mbtiindex' => 'MBTI测试',
+                'test_mbtireport' => 'MBTI测试报告',
             ],
             
         ],
@@ -47,7 +50,9 @@ return [
         'article_index' => 'article_create,article_edit',
         'article_bannerindex' => 'article_bannercreate',
         'test_holandreport' => 'test_holandreportdetail',
-        'test_holandadmin' => 'test_holandadmindetail'
+        'test_holandadmin' => 'test_holandadmindetail',
+        'test_mbtiadmin' => 'test_mbtiadmindetail',
+        'test_mbtireport' => 'test_mbtireportdetail'
     ],
     //公共权限
     'public_permission' => [

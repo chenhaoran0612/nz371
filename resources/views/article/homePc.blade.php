@@ -28,14 +28,16 @@
         -webkit-border-radius: 20px;
     }
     .image-container:hover{
-       box-shadow: 5px 5px 3px black;
+       box-shadow: 5px 5px 3px #666;
        border-radius: 20px;
     }
     
     .el-element-overlay:hover{
         -ms-transform: scale(1.2) translateZ(0);
         -webkit-transform: scale(1.2) translateZ(0);
-
+    }
+    h1 , h3{
+        text-shadow: 5px 5px 10px #333!important;
     }
 
   </style>
@@ -125,10 +127,6 @@
                       </div> 
                       <div class="login-tip text-danger text-center hide">
                       </div>
-                      <div class="col-md-12 col-sm-12 col-xs-12 text-right" style="margin-top: 10px">
-                        <a href="/password/reset">忘记密码？</a>
-                      </div>
-
                     </div>
                   </form>
                 </div>
