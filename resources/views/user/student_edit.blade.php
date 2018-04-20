@@ -121,7 +121,7 @@
                                                 <div class="col-md-4 col-md-offset-10">
                                                     <input type="hidden" name="id" value="{{$user->id}}">
                                                     <button type="submit" class="btn btn-info user_submit">提交</button>
-                                                    <a type="button" class="btn btn-default" href="/user/distributor">返回</a>
+                                                    <a type="button" class="btn btn-default" href="/user/student">返回</a>
                                                 </div>
                                             </div>
                                         </div>
