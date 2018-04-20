@@ -75,7 +75,7 @@
 
         @foreach($categories as $category)
         <article id="{{$category->id}}" class="section-wrapper clearfix" data-custom-background-img="/imgs/bg{{$category->id % 7 + 1}}.jpg">
-          <div class="content-wrapper clearfix" style="position: absolute;top: 0">
+          <div class="content-wrapper clearfix wow fadeInLeft animated" data-wow-delay="0.3s" style="position: absolute; visibility: visible; animation-delay: 0.3s; animation-name: fadeInLeft;">
             <div class="col-sm-11 pull-right">
                 <h1 class="section-title" style="text-align: left;padding: 15px;">{{$category->category_name}}</h1>
                 <section class="feature-columns row clearfix">
@@ -108,7 +108,7 @@
         </article>
 
         <article id="login" class="section-wrapper clearfix" data-custom-background-img="/imgs/bg2.jpg">
-          <div class="content-wrapper clearfix" style="position: absolute;">
+          <div class="content-wrapper clearfix wow fadeInDown animated" data-wow-delay="0.3s" style="position: absolute; visibility: visible; animation-delay: 0.3s; animation-name: fadeInDown;">
                 <div class="col-sm-6 col-md-6 pull-right" >
                   <div class="col-md-12">
                       <h1 class="section-title">登录SMARTBRAIN</h1>
