@@ -52,8 +52,8 @@
       <canvas id="garden"></canvas>
       <div id="words">
         <div id="loveu">
-          爱你直到永永远远。<br/>
-          <div class="signature">- 爱你的老公</div>
+          Dear Zhe Love you forever!<br/>
+          <div class="signature">- Your husband</div>
         </div>
       </div>
     </div>
