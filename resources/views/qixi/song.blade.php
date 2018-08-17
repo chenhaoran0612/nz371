@@ -12,21 +12,17 @@
   src: url('digital-7_mono.ttf') format("truetype");
 }
 </style>
-
 <link href="/css/qixi.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="/js/jquery-qixi.js"></script>
 <script type="text/javascript" src="/js/garden-qixi.js"></script>
 <script type="text/javascript" src="/js/functions-qixi.js"></script>
-
 </head>
-
 <body>
 
 <div id="mainDiv">
   <div id="content">
     <div id="code">
       <span class="comments">/**</span><br />
-      <span class="space"/><span class="comments">*2018—08-15,</span><br />
       <span class="space"/><span class="comments">*2018-08-17.</span><br />
       <span class="space"/><span class="comments">*/</span><br />
       Boy name = <span class="keyword">Mr</span> CHEN HAO RAN<br />
