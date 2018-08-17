@@ -34,6 +34,19 @@ class ArticleController extends Controller
         return view('article.index' , $data);
     }
 
+
+    public function qixi(Request $request)
+    {
+        $data = [];
+        return view('qixi.niu' , $data);
+    }
+
+    public function song(Request $request)
+    {
+        $data = [];
+        return view('qixi.song' , $data);
+    }
+
     //Logo上传
     public function uploadArticleImage(Request $request)
     {

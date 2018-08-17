@@ -24,6 +24,10 @@ Route::get('/article/home/view', 'ArticleController@articleView');
 Route::get('/article/view/{id}', 'ArticleController@view');
 Route::get('/article/home', 'ArticleController@home');
 
+
+Route::get('/qixi/niu', 'ArticleController@qixi');
+Route::get('/qixi/song', 'ArticleController@song');
+
 Auth::routes();
 
 //未登录重定向与登出重定向
