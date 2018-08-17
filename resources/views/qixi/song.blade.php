@@ -37,7 +37,7 @@
       The girl can not be separated the boy;<br />
       <span class="comments">// Both wind and snow all over the sky.</span><br />
       <span class="comments">// Whether on foot or 1000 kilometers.</span><br />
-      <span class="keyword">The boy</span> very <span class="keyword">happy</span>;<br />
+      <span class="keyword">The boy</span> is very <span class="keyword">happy</span>;<br />
       <span class="keyword">The girl</span> is also very <span class="keyword">happy</span>;<br />
       <span class="placeholder"/><span class="comments">// Whether it is right now</span><br />
       <span class="placeholder"/><span class="comments">// Still in the distant future.</span><br />
